@@ -36,22 +36,22 @@ app.use(cors());
 
 
 app.set('trust proxy', 1) // trust first proxy
-// app.use(session({
-//   secret: 'keyboard cat',
-//   resave: false,
-//   saveUninitialized: true,
-//   cookie: { secure: true }
-// }))
 app.use(session({
-  cookie:{
-      secure: true,
-      maxAge:60000
-         },
-  //store: new RedisStore(),
   secret: 'secret',
+  resave: false,
   saveUninitialized: true,
-  resave: false
-  }));
+  cookie: { secure: true }
+}))
+// app.use(session({
+//   cookie:{
+//       secure: true,
+//       maxAge:60000
+//          },
+//   //store: new RedisStore(),
+//   secret: 'secret',
+//   saveUninitialized: true,
+//   resave: false
+//   }));
 
 //passport configuration
 routeConfig(passport);
