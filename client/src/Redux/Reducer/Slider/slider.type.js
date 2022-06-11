@@ -1,0 +1,5 @@
+export const GET_SLIDER = "GET_SLIDER";
+export const GET_SPECIFIC_SLIDER = "GET_SPECIFIC_SLIDER";
+export const ADD_SLIDER = "ADD_SLIDER";
+export const UPDATE_SLIDER = "UPDATE_SLIDER";
+export const DELETE_SLIDER = "DELETE_SLIDER";

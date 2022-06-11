@@ -1,0 +1,5 @@
+export const GET_PHOTOS = "GET_PHOTOS";
+export const GET_SPECIFIC_PHOTOS = "GET_SPECIFIC_PHOTOS";
+export const ADD_PHOTOS = "ADD_PHOTOS";
+export const UPDATE_PHOTOS = "UPDATE_PHOTOS";
+export const DELETE_PHOTOS = "DELETE_PHOTOS";
