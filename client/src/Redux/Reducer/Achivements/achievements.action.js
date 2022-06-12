@@ -3,11 +3,13 @@ import axios from "axios";
 //Redux types
 import { GET_ACHIEVEMENT, GET_SPECIFIC_ACHIEVEMENT, ADD_ACHIEVEMENT, DELETE_ACHIEVEMENT, UPDATE_ACHIEVEMENT } from "./achievements.type";
 
+import { API_URL } from "../../../key";
+
 export const getAchievement = () => async (dispatch) => {
     try {
         const achievementsList = axios({
             method: "GET",
-            url: "http://localhost:4000/achievements/"
+            url: `${API_URL}/achievements/`
         }).then((response) => {
             return response;
         });
@@ -20,7 +22,7 @@ export const getSpecificAchievement = (_id) => async (dispatch) => {
     try {
         const specificAchievementsList = axios({
             method: "GET",
-            url: `http://localhost:4000/achievements/get/${_id}`
+            url: `${API_URL}/achievements/get/${_id}`
         }).then((response) => {
             return response;
         });
@@ -35,7 +37,7 @@ export const addAchievement = (achievememtData) => async (dispatch) => {
     try {
         const achievememt = axios({
             method: "POST",
-            url: "http://localhost:4000/achievements/add-achievementS",
+            url: `${API_URL}/achievements/add-achievementS`,
             data: {achievememtData},
         }).then((response) => {
             return response;
@@ -49,7 +51,7 @@ export const updateAchievementData = (achievememtData) => async (dispatch) => {
     try {        
         const achievememt = axios({
             method: "PUT",
-            url: "http://localhost:4000/achievements/update-achievement",
+            url: `${API_URL}/achievements/update-achievement`,
             data: {achievememtData},
         }).then((response) => {
             return response;
@@ -64,7 +66,7 @@ export const deleteAchievement = (_id) => async (dispatch) => {
     try {
         const deleteAch = axios({
             method: "DELETE",
-            url: `http://localhost:4000/achievements/delete/${_id}`,
+            url: `${API_URL}/achievements/delete/${_id}`,
         }).then((response) => {
             return response;
         });

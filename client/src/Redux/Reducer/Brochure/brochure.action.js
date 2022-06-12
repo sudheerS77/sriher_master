@@ -3,11 +3,13 @@ import axios from "axios";
 //Redux types
 import { GET_BROCHURE, GET_SPECIFIC_BROCHURE, ADD_BROCHURE, DELETE_BROCHURE, UPDATE_BROCHURE } from "./brochure.type";
 
+import { API_URL } from "../../../key";
+
 export const getBrochure = () => async (dispatch) => {
     try {
         const brochureList = await axios({
             method: "GET",
-            url: "http://localhost:4000/brochure/"
+            url: `${API_URL}/brochure/`
         }).then((response) => {
             return response;
         });
@@ -20,7 +22,7 @@ export const getSpecificBrochure = (_id) => async (dispatch) => {
     try {
         const specificBrochure = await axios({
             method: "GET",
-            url: `http://localhost:4000/brochure/get/${_id}`
+            url: `${API_URL}/brochure/get/${_id}`
         }).then((response) => {
             return response;
         });
@@ -34,7 +36,7 @@ export const addBrochure = (brochureData) => async (dispatch) => {
     try {
         const brochure = await axios({
             method: "POST",
-            url: "http://localhost:4000/brochure/add-brochure",
+            url: `${API_URL}/brochure/add-brochure`,
             data: {brochureData},
         }).then((response) => {
             return response;
@@ -48,7 +50,7 @@ export const updateBrochure = (brochureData) => async (dispatch) => {
     try {
         const brochure = await axios({
             method: "PUT",
-            url: "http://localhost:4000/brochure/update-brochure",
+            url: `${API_URL}/brochure/update-brochure`,
             data: {brochureData},
         }).then((response) => {
             return response;
@@ -63,7 +65,7 @@ export const deleteBrochure = (_id) => async (dispatch) => {
     try {
         const deleteBrochure = axios({
             method: "DELETE",
-            url: `http://localhost:4000/brochure/delete/${_id}`,
+            url: `${API_URL}/brochure/delete/${_id}`,
         }).then((response) => {
             return response;
         });

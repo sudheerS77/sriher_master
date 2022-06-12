@@ -7,7 +7,7 @@ export const getPhotos = () => async (dispatch) => {
     try {
         const photosList = axios({
             method: "GET",
-            url: "http://localhost:4000/photos/"
+            url: `${API_URL}/photos/`
         }).then((response) => {
             return response;
         });
@@ -23,7 +23,7 @@ export const getSpecificPhotos = (_id) => async (dispatch) => {
     try {
         const specificPhoto = axios({
             method: "GET",
-            url: `http://localhost:4000/photos/get/${_id}`
+            url: `${API_URL}/photos/get/${_id}`
         }).then((response) => {
             return response;
         });
@@ -40,7 +40,7 @@ export const addPhoto = (galleryData) => async (dispatch) => {
     try {
         const photo = axios({
             method: "POST",
-            url: "http://localhost:4000/photos/add-gallery",
+            url: `${API_URL}/photos/add-gallery`,
             data: {galleryData},
         }).then((response) => {
             return response;
@@ -57,7 +57,7 @@ export const updatePhotoData = (galleryData) => async (dispatch) => {
     try {
         const photo = axios({
             method: "PUT",
-            url: "http://localhost:4000/photos/update-gallery",
+            url: `${API_URL}/photos/update-gallery`,
             data: {galleryData},
         }).then((response) => {
             return response;
@@ -75,7 +75,7 @@ export const deletePhoto = (_id) => async (dispatch) => {
     try {
         const deletePhoto = axios({
             method: "DELETE",
-            url: `http://localhost:4000/photos/delete/${_id}`,
+            url: `${API_URL}/photos/delete/${_id}`,
         }).then((response) => {
             return response;
         });

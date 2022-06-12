@@ -3,11 +3,13 @@ import axios from "axios";
 //Redux types
 import { GET_PROJECT, GET_SPECIFIC_PROJECT, ADD_PROJECT, DELETE_PROJECT, UPDATE_PROJECT } from "./project.type";
 
+import { API_URL } from "../../../key";
+
 export const getProject = () => async (dispatch) => {
     try {
         const project = axios({
             method: "GET",
-            url: "http://localhost:4000/projects/"
+            url: `${API_URL}/projects/`,
         }).then((response) => {
             return response;
         });        
@@ -24,7 +26,7 @@ export const getSpecificProject = (_id) => async (dispatch) => {
     try {
         const specificProjectList = axios({
             method: "GET",
-            url: `http://localhost:4000/projects/get/${_id}`
+            url: `${API_URL}/projects/get/${_id}`
         }).then((response) => {
             return response;
         });
@@ -41,7 +43,7 @@ export const addProject = (projectData) => async (dispatch) => {
     try {
         const project = axios({
             method: "POST",
-            url: "http://localhost:4000/projects/add-project",
+            url: `${API_URL}/projects/add-project`,
             data: {projectData},
         }).then((response) => {
             return response;
@@ -58,7 +60,7 @@ export const updateProjectData = (projectData) => async (dispatch) => {
     try {
         const project = axios({
             method: "PUT",
-            url: "http://localhost:4000/projects/update-project",
+            url: `${API_URL}/projects/update-project`,
             data: {projectData},
         }).then((response) => {
             return response;
@@ -76,7 +78,7 @@ export const deleteProject = (_id) => async (dispatch) => {
     try {
         const deleteProject = axios({
             method: "DELETE",
-            url: `http://localhost:4000/projects/delete/${_id}`,
+            url: `${API_URL}/projects/delete/${_id}`,
         }).then((response) => {
             return response;
         });

@@ -3,11 +3,13 @@ import { Dispatch } from "react";
 //Redux types
 import { GET_SLIDER, GET_SPECIFIC_SLIDER, ADD_SLIDER, DELETE_SLIDER, UPDATE_SLIDER} from "./slider.type";
 
+import { API_URL } from "../../../key";
+
 export const getSlider = () => async (dispatch) => {
     try {
         const sliderList = axios({
             method: "GET",
-            url: "http://localhost:4000/slider/"
+            url: `${API_URL}/slider/`,
         }).then((response) => {
             return response;
         });
@@ -23,7 +25,7 @@ export const getSpecificSlider = (_id) => async (dispatch) => {
     try {
         const specificSlider = axios({
             method: "GET",
-            url: `http://localhost:4000/slider/get/${_id}`
+            url: `${API_URL}/slider/get/${_id}`
         }).then((response) => {
             return response;
         });
@@ -41,7 +43,7 @@ export const addSlider = (sliderData) => async (dispatch) => {
     try {
         const slider = axios({
             method: "POST",
-            url: "http://localhost:4000/slider/add-slider",
+            url: `${API_URL}/slider/add-slider`,
             data: {sliderData},
         }).then((response) => {
             return response;
@@ -58,7 +60,7 @@ export const updateSlider = (sliderData) => async (dispatch) => {
     try {
         const slider = axios({
             method: "PUT",
-            url: "http://localhost:4000/slider/update-slider",
+            url: `${API_URL}/slider/update-slider`,
             data: {sliderData},
         }).then((response) => {
             return response;
@@ -76,7 +78,7 @@ export const deleteSlider = (_id) => async (dispatch) => {
     try {
         const deleteSlider = axios({
             method: "DELETE",
-            url: `http://localhost:4000/slider/delete/${_id}`,
+            url: `${API_URL}/slider/delete/${_id}`,
         }).then((response) => {
             return response;
         });

@@ -3,11 +3,13 @@ import axios from "axios";
 //Redux types
 import { GET_EVENTS, ADD_EVENT, GET_SPECIFIC_EVENT, DELETE_EVENT, UPDATE_EVENT, GET_ALL_REGISTERED_EVENTS, GET_USER_EVENTS, REGISTER_EVENT, CREATE_PAYMENT } from "./event.type";
 
+import { API_URL } from "../../../key";
+
 export const getEvents = () => async (dispatch) => {
     try {
         const eventList = await axios({
             method: "GET",
-            url: "http://localhost:4000/events/"
+            url: `${API_URL}/events`,
         }).then((response) => {
             return response;
         });        
@@ -24,7 +26,7 @@ export const getSpecificEvent = (_id) => async (dispatch) => {
     try {
         const specificEventList = await axios({
             method: "GET",
-            url: `http://localhost:4000/events/get/${_id}`
+            url: `${API_URL}/events/get/${_id}`
         }).then((response) => {
             return response;
         });
@@ -41,7 +43,7 @@ export const addEvent = (eventData) => async (dispatch) => {
     try {
         const event = await axios({
             method: "POST",
-            url: "http://localhost:4000/events/add-event",
+            url: `${API_URL}/events/add-event`,
             data: {eventData},
         }).then((response) => {
             return response;
@@ -59,7 +61,7 @@ export const updateEventData = (eventData) => async (dispatch) => {
     try {
         const event = await axios({
             method: "PUT",
-            url: "http://localhost:4000/events/update-event",
+            url: `${API_URL}/events/update-event`,
             data: {eventData},
         }).then((response) => {
             return response;
@@ -77,7 +79,7 @@ export const deleteEvent = (_id) => async (dispatch) => {
     try {
         const deleteEvent = await axios({
             method: "DELETE",
-            url: `http://localhost:4000/events/delete/${_id}`,
+            url: `${API_URL}/events/delete/${_id}`,
         }).then((response) => {
             return response;
         });        
@@ -96,7 +98,7 @@ export const getAllRegistredEvents = (_id) => async (dispatch) => {
     try {
         const registredEventsList = await axios({
             method: "GET",
-            url: `http://localhost:4000/events/get-registered-events/${_id}`
+            url: `${API_URL}/events/get-registered-events/${_id}`
         }).then((response) => {
             return response;
         });        
@@ -114,7 +116,7 @@ export const getUserEvent = (_id) => async (dispatch) => {
         console.log(_id);
         const userEventList = await axios({
             method: "GET",
-            url: `http://localhost:4000/events/getuserevents/${_id}`
+            url: `${API_URL}/events/getuserevents/${_id}`
         }).then((response) => {
             return response;
         });
@@ -131,7 +133,7 @@ export const eventRegisteration = (eventRegData) => async (dispatch) => {
     try {
         const event = await axios({
             method: "POST",
-            url: "http://localhost:4000/events/event-register-user",
+            url: `${API_URL}/events/event-register-user`,
             data: {eventRegData},
         }).then((response) => {
             return response;
@@ -150,7 +152,7 @@ export const createPayment = () => async (dispatch) => {
     try {
         const order = await await axios({
             method: "POST",
-            url: "http://localhost:4000/payment/new",
+            url: `${API_URL}/payment/new`,
         }).then((response) => {
             return response;
         });

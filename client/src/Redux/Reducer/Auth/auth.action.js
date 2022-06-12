@@ -4,12 +4,13 @@ import axios from "axios";
 import { SIGN_IN, SIGN_UP, SIGN_OUT, ERROR } from "./auth.type";
 import { clearUser } from "../User/user.action";
 import { setError, hideError } from "../Errors/error.type";
+import { API_URL, CLIENT_URL } from "../../../key";
 
 export const signIn = (userData) => async (dispatch) => {
     try {
         const User = await axios({
             method: "POST",
-            url: "http://localhost:4000/auth/signin",
+            url: `${API_URL}/auth/signin`,
             data: { credentials: userData }
         }).then((response) => {
             return response;
@@ -17,10 +18,10 @@ export const signIn = (userData) => async (dispatch) => {
         const userRole =  User.data.userRole;
         localStorage.setItem("SRCUser", JSON.stringify({ token:  User.data.token }));
         if(userRole === "user") {
-            window.location.href = "http://localhost:3000/"
+            window.location.href = `${CLIENT_URL}`
         } 
         if(userRole === "admin") {
-            window.location.href = "http://localhost:3000/admin"
+            window.location.href = `${CLIENT_URL}/admin`
         }
 
         return dispatch({ type: SIGN_IN , payload:  User.data });
@@ -35,13 +36,13 @@ export const signUp = (userData) => async (dispatch) => {
     try {
         const User = await axios({
             method: "POST",
-            url: "http://localhost:4000/auth/signup",
+            url: `${API_URL}/auth/signup`,
             data: { credentials: userData }
         }).then((response) => {
             return response;
         });        
         localStorage.setItem("SRCUser", JSON.stringify({ token:  User.data.token }));
-        window.location.href = "http://localhost:3000/"
+        window.location.href = `${CLIENT_URL}`
         
         return dispatch({ type: SIGN_UP , payload:  User.data });
     } catch (error) {
@@ -54,7 +55,7 @@ export const addUserByAdmin = (userData) => async (dispatch) => {
     try {
         const User = await axios({
             method: "POST",
-            url: "http://localhost:4000/auth/signup",
+            url: `${API_URL}/auth/signup`,
             data: { credentials: userData }
         }).then((response) => {
             return response;
@@ -71,7 +72,7 @@ export const signOut = () => async (dispatch) => {
     try {
       localStorage.removeItem("SRCUser");
       clearUser();
-      window.location.href = "http://localhost:3000/";
+      window.location.href = `${CLIENT_URL}/`
       
       return dispatch({ type: SIGN_OUT, payload: {} });
     } catch (error) {

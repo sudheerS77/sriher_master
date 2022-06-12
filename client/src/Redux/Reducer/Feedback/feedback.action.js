@@ -3,11 +3,13 @@ import axios from "axios";
 //Redux types
 import { GET_FEEDBACK, ADD_FEEDBACK, DELETE_FEEDBACK, ADD_FACULTY_FEEDBACK, UPDATE_FACULTY_FEEDBACK, GET_SPECIFIC_FEEDBACK, GET_FACULTY_FEEDBACK } from "./feedback.type";
 
+import { API_URL } from "../../../key";
+
 export const getFeedback = () => async (dispatch) => {
     try {
         const feedbackList = await axios({
             method: "GET",
-            url: "http://localhost:4000/feedback/getfacultyfeedbackdata"
+            url: `${API_URL}/feedback/getfacultyfeedbackdata`
         }).then((response) => {
             return response;
         });        
@@ -24,7 +26,7 @@ export const getFacultyFeedback = (_id) => async (dispatch) => {
         console.log("_ID"+_id);
         const facultyFeedbackList = await axios({
             method: "GET",
-            url: `http://localhost:4000/feedback/faculty-feedback/${_id}`
+            url: `${API_URL}/feedback/faculty-feedback/${_id}`
         }).then((response) => {
             return response;
         });
@@ -41,7 +43,7 @@ export const getSpecificFeedback = (_id) => async (dispatch) => {
         console.log("_ID"+_id);
         const specificFacultyList = await axios({
             method: "GET",
-            url: `http://localhost:4000/feedback/get-ffaculty/${_id}`
+            url: `${API_URL}/feedback/get-ffaculty/${_id}`
         }).then((response) => {
             return response;
         });
@@ -59,7 +61,7 @@ export const addUserFeedback = (feedbackData) => async (dispatch) => {
         console.log(feedbackData);
         const feedback = await axios({
             method: "POST",
-            url: "http://localhost:4000/feedback/add-user-feedback",
+            url: `${API_URL}/feedback/add-user-feedback`,
             data: {feedbackData},
         }).then((response) => {
             return response;
@@ -78,7 +80,7 @@ export const addFacultyForFeedback = (facultyData) => async (dispatch) => {
     try {
         const facultydata = await axios({
             method: "POST",
-            url: "http://localhost:4000/feedback/add-faculty-for-feedback",
+            url: `${API_URL}/feedback/add-faculty-for-feedback`,
             data: {facultyData},
         }).then((response) => {
             return response;
@@ -98,7 +100,7 @@ export const updateFeedbacFacultyData = (facultyData) => async (dispatch) => {
     try {
         const faculty = await axios({
             method: "PUT",
-            url: "http://localhost:4000/feedback/update-feedack-faculty",
+            url: `${API_URL}/feedback/update-feedack-faculty`,
             data: {facultyData},
         }).then((response) => {
             return response;
@@ -116,7 +118,7 @@ export const deleteFacultyFeedback = (_id) => async (dispatch) => {
     try {
         const deleteFac = await axios({
             method: "DELETE",
-            url: `http://localhost:4000/feedback/delete-faculty-feedback/${_id}`,
+            url: `${API_URL}/feedback/delete-faculty-feedback/${_id}`,
         }).then((response) => {
             return response;
         });

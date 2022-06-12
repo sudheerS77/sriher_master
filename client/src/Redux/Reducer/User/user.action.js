@@ -3,11 +3,13 @@ import axios from "axios";
 //Redux types
 import { SELF, CLEAR_USER, UPDATE_USER, DELETE_USER, GET_USERS, ADD_USER, GET_SPECIFIC_USER, ALL_USERS } from "./user.type";
 
+import { API_URL } from "../../../key";
+
 export const getUser = (_id) => async (dispatch) => {
     try {
         const User = axios({
             method: "GET",
-            url: `http://localhost:4000/user/${_id}`
+            url: `${API_URL}/user/${_id}`
         }).then((response) => {
             return response;
         });        
@@ -23,7 +25,7 @@ export const getAllUsers = () => async (dispatch) => {
     try {
         const userList = axios({
             method: "GET",
-            url: "http://localhost:4000/user/allusers"
+            url: `${API_URL}/user/allusers`
         }).then((response) => {
             return response;
         });        
@@ -40,7 +42,7 @@ export const getAllUsers = () => async (dispatch) => {
 //     try {
 //         const specificProjectList = axios({
 //             method: "GET",
-//             url: `http://localhost:4000/user/get/${_id}`
+//             url: `${API_URL}/user/get/${_id}`
 //         }).then((response) => {
 //             return response;
 //         });
@@ -54,7 +56,7 @@ export const addUser = (userData) => async (dispatch) => {
     try {
         const user = axios({
             method: "POST",
-            url: "http://localhost:4000/",
+            url: `${API_URL}/`,
             data: {userData},
         }).then((response) => {
             return response;
@@ -71,7 +73,7 @@ export const updateUserData = (userData) => async (dispatch) => {
     try {
         const user = axios({
             method: "PUT",
-            url: "http://localhost:4000/user/update",
+            url: `${API_URL}/user/update`,
             data: {userData},
         }).then((response) => {
             return response;
@@ -89,7 +91,7 @@ export const deleteUser = (_id) => async (dispatch) => {
     try {
         const deleteUser = axios({
             method: "DELETE",
-            url: `http://localhost:4000/user/delete/${_id}`,
+            url: `${API_URL}/user/delete/${_id}`,
         }).then((response) => {
             return response;
         });
@@ -108,7 +110,7 @@ export const getMySelf = () => async (dispatch) => {
     try {
         const User = axios({
             method: "GET",
-            url: `http://localhost:4000/user/`
+            url: `${API_URL}/user/`
         }).then((response) => {
             return response;
         });        
