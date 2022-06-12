@@ -71,13 +71,8 @@ app.use("/feedback", Feedback)
 app.use("/payment", Payment);
 
 
-app.get("/add", passport.authenticate("jwt"), async (req, res) => {
-    try {
-      console.log(req.session.passport.user);
-      return res.json({message: "ADD"});
-    }
-    catch(e) {
-    }
+app.get("/", async (req, res) => {
+  res.status(200).json({ message: "Welcome"})
 }) 
 
 app.listen(4000, () =>
