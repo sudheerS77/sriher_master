@@ -2,7 +2,8 @@ import express from "express";
 import passport from "passport";
 
 //Dadabase model
-import { UserModel } from "../../database/user";
+//import { UserModel } from "../../database/user/index";
+import { UserModel } from "../../database/user/index"
 
 const Router = express.Router();
 
@@ -18,7 +19,6 @@ Router.get("/", passport.authenticate("jwt"),async (req, res) => {
     try {
       const user = req.session.passport.user;
       user.password = ""
-      console.log(user.password);
       return res.json({ user });
     } catch (error) {
       return res.status(500).json({ error: error.message });
@@ -53,14 +53,16 @@ Method    PUT
 */
 Router.put("/update", async (req, res) => {
     try {
+      console.log("USERRRRRRRRRR");
       const data = req.body.userData;
       console.log(data);
-      await UserModel.findOneAndUpdate(
+      const user = await UserModel.findOneAndUpdate(
           { _id: data._id },
           { $set: data }
       );
+      console.log(user);
   
-      return res.json({ message: "user profile updated successfully" });
+      return res.status(200).json({ message: "user profile updated successfully", data: user });
     } catch (error) {
       return res.status(500).json({ error: error.message });
     }
@@ -97,7 +99,6 @@ Router.delete("/delete/:_id", async (req, res) => {
           throw Error("User Not exist");
       }
       const data = await UserModel.findByIdAndDelete(_id);
-      console.log(data);
       res.status(200).json({data: data, message: "User Deleted successfully"});
   } catch (error) {
       res.status(500).json({error: error.message});

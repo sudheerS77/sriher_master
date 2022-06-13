@@ -1,1 +1,0 @@
-ssh "ubuntu@15.206.149.174" "cd app/sriher_master && sudo docker-compose stop && git pull origin main && sudo docker-compose up -d --build  && exit"

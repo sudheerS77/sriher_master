@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import gravatar from "gravatar";
@@ -12,9 +12,8 @@ import { signOut } from "../../Redux/Reducer/Auth/auth.action";
 const LgNav = () => {
   const { type } = useParams();
   const [value, setValue] = useState("");
+  //const [user, setUser] = useState();
   const navigate = useNavigate();
-  const [user, setUser] = useState();
-
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -22,9 +21,9 @@ const LgNav = () => {
   const dispatch = useDispatch();
   const reduxState = useSelector((globalStore) => globalStore.user.user);
 
-  useEffect(() => {
-  reduxState?.user && setUser(reduxState?.user);
- }, [reduxState]);
+//   useEffect(() => {
+//   reduxState?.user && setUser(reduxState?.user);
+//  }, [reduxState]);
 
  const signOutHandler = () => dispatch(signOut());
 
@@ -86,16 +85,19 @@ const LgNav = () => {
               <li className={ type==="achivements" ? 'bg-teal-800 border border-teal-500 border-grey-50 shadow-2xl py-1 px-2 rounded-sm text-blue-50 transition duration-700 ease-in-out delay-150': ""}>
                 <Link to={"/achivements"}>Achivements</Link>
               </li>
-              <li className={ type==="faculty" || type==="visitingfaculty" || type==="pg" ? 'bg-teal-800 border border-teal-500 border-grey-50 shadow-2xl py-1 px-2 rounded-sm text-blue-50 transition duration-700 ease-in-out delay-150': ""}>                
-                <select value={value} onClick={() => value !=="" && navigate(`/${value}`)} onChange={handleChange} className="bg-teal-700 h-full w-full border-none">
-                  <option value="" disabled hidden>Teaching Faculty</option>
-                  <option value="faculty" className="text-center text-sm font-light">
+              <li className={ type==="faculty" || type==="visitingfaculty" || type==="pg" ? 'bg-teal-800 border border-teal-500 border-grey-50 shadow-2xl py-1 px-2 rounded-sm text-blue-50 transition duration-700 ease-in-out delay-150 w-44': "w-44"}>                
+                <select value={value} onClick={() => value !=="" && navigate(`/${value}`)} style={{ fontSize: "100%" }}  onChange={handleChange} className="bg-teal-700 h-full w-full border-none rounded-lg">
+                  <option value="" disabled hidden>Teaching Staff</option>
+                  <option value="faculty" className="text-center text-lg bg-gray-50 font-bold text-indigo-900 w-full">
                     <Link to="/faculty">Faculty</Link>
                   </option>
-                  <option value="visitingfaculty" className="text-center text-sm font-light">Visiting Faculty</option>
-                  <option value="pg" className="text-center text-sm font-light">Pg</option>
+                  <option disabled="disabled" className="bg-gray-50"></option>
+                  <option value="visitingfaculty" className="text-center text-lg bg-gray-50 font-bold text-indigo-900 w-full">Visiting Faculty</option>
+                  <option disabled="disabled"  className="bg-gray-50"></option>
+                  <option value="pg" className="text-center text-lg bg-gray-50 font-bold text-indigo-900 w-full py-1">Pg</option>
+                  <option disabled="disabled" className="bg-gray-50"></option>
                 </select>
-              </li>
+              </li>                          
               <li className={ type==="gallery" ? 'bg-teal-800 border border-teal-500 border-grey-50 shadow-2xl py-1 px-2 rounded-sm text-blue-50 transition duration-700 ease-in-out delay-150': ""}>
                 <Link to={"/gallery"}>Gallery</Link>
               </li>

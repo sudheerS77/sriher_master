@@ -3,6 +3,8 @@ import axios from "axios";
 //Redux types
 import { GET_PG, ADD_PG, DELETE_PG, GET_SPECIFIC_PG, UPDATE_PG } from "./pg.type";
 
+import { API_URL } from "../../../key";
+
 export const getPg = () => async (dispatch) => {
     try {
         const pgList = axios({

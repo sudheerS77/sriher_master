@@ -1,7 +1,9 @@
 import axios from "axios";
-import { Dispatch } from "react";
+
 //Redux types
 import { GET_PHOTOS, GET_SPECIFIC_PHOTOS, ADD_PHOTOS, DELETE_PHOTOS, UPDATE_PHOTOS} from "./gallery.type";
+
+import { API_URL } from "../../../key";
 
 export const getPhotos = () => async (dispatch) => {
     try {

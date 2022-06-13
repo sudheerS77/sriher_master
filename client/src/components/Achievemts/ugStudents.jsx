@@ -14,7 +14,7 @@ const UGStudents = () => {
 
   return (
     <div>
-        <h2 className="text-2xl font-bold md:mx-20 lg:mx-44 mb-6 mt-4 ml-3">UG Students</h2>
+        <h2 className="text-2xl font-bold font-semibold md:mx-20 lg:mx-44 mb-6 mt-4 ml-3">UG Students</h2>
         <div className="flex flex-wrap items-center justify-center gap-4 md:gap-10 md:mx-20 lg:mx-40">
             {ugStudents?.map((data) => (
                 data.userType === "ugstudent" && (

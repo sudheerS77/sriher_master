@@ -50,7 +50,7 @@ const Login = () => {
         });
         dispatch(signIn(values));
         if(reduxState?.error?.response) {
-          setErrorMsg({show: true, hide: false, message: reduxState?.error.response.data.error});
+          setErrorMsg({show: true, hide: false, message: reduxState?.error.response?.data?.error});
         }        
       }
 
@@ -70,8 +70,8 @@ const Login = () => {
   return (
     <>
         <div className="">          
-                <div className="flex flex-col items-center justify-center gap-4 mx-2">
-                    <div className="w-80 md:w-96 px-2 md:px-12 py-5 pb-10 flex flex-col items-end justify-center gap-5 bg-gray-50 border rounded-md shadow-xl">
+                <div className="flex flex-col items-center justify-center gap-4 mx-3">
+                    <div className="w-full md:w-96 px-3 md:px-12 py-5 pb-10 flex flex-col items-end justify-center gap-5 bg-gray-50 border rounded-md shadow-xl">
                     <h2 className="mx-40 text-2xl font-bold text-gray-500">Login</h2>
                     {errorMsg?.show && 
                       <div className="flex w-full items-center justify-between bg-red-500 p-2 text-white font-light">

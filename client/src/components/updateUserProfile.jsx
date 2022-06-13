@@ -48,23 +48,26 @@ const UpdateUserProfile = () => {
     useEffect(() => {
         reduxState?.user && setUser(reduxState.user);
     }, [reduxState]);
+    
     console.log(user);
   const submit = () => {
       console.log(values);
+      console.log(user);
+      
       dispatch(updateUserData(values));
       console.log(values);
-        setValues({
-            fullName: "",
-            institution: "",
-            stateDentalCode: "",
-            state: "",
-            phoneNumber: "",
-            email: "",
-            password: '',
-            address: "",
-            typeOfRegistration: "",
-            showPassword: false,
-        })
+        // setValues({
+        //     fullName: "",
+        //     institution: "",
+        //     stateDentalCode: "",
+        //     state: "",
+        //     phoneNumber: "",
+        //     email: "",
+        //     password: '',
+        //     address: "",
+        //     typeOfRegistration: "",
+        //     showPassword: false,
+        // })
         //dispatch(signUp(values));
         
     }
@@ -83,9 +86,9 @@ const UpdateUserProfile = () => {
                 <TextField
                     //required
                     helperText="Your name"  
-                    value={user ? user.fullName : ""}
+                    value={user.fullName}
                     fullWidth
-                    onChange={(e) => setValues((prev) => ({...prev, fullName: e.target.value }))}
+                    onChange={(e) => setUser((prev) => ({...prev, fullName: e.target.value }))}
                 />
                 <TextField
                     required
@@ -93,7 +96,7 @@ const UpdateUserProfile = () => {
                     helperText="Institution"                             
                     value={user?.institution}
                     fullWidth
-                    onChange={(e) => setValues((prev) => ({...prev, institution: e.target.value }))}
+                    onChange={(e) => setUser((prev) => ({...prev, institution: e.target.value }))}
                 />
                 <TextField
                     required
@@ -101,7 +104,7 @@ const UpdateUserProfile = () => {
                     helperText="State Dental Council Number"                             
                     value={user?.stateDentalCode}
                     fullWidth
-                    onChange={(e) => setValues((prev) => ({...prev, stateDentalCode: e.target.value }))}
+                    onChange={(e) => setUser((prev) => ({...prev, stateDentalCode: e.target.value }))}
                 />
                 <TextField
                     required
@@ -109,7 +112,7 @@ const UpdateUserProfile = () => {
                     helperText="State of Registration"                             
                     value={user?.state}
                     fullWidth
-                    onChange={(e) => setValues((prev) => ({...prev, state: e.target.value }))}
+                    onChange={(e) => setUser((prev) => ({...prev, state: e.target.value }))}
                 />
                 
             </div>
@@ -120,7 +123,7 @@ const UpdateUserProfile = () => {
                     helperText="Mobile Number"  
                     value={values.phoneNumber}
                     fullWidth
-                    onChange={(e) => setValues((prev) => ({...prev, phoneNumber: e.target.value }))}
+                    onChange={(e) => setUser((prev) => ({...prev, phoneNumber: e.target.value }))}
                 />
                 <TextField
                     id="typeOfRegistration"
@@ -129,7 +132,7 @@ const UpdateUserProfile = () => {
                     value={""}
                     helperText="Type Of Registration"
                     //value={currency}
-                    onChange={(e) => setValues((prev) => ({...prev, typeOfRegistration: e.target.value }))}
+                    onChange={(e) => setUser((prev) => ({...prev, typeOfRegistration: e.target.value }))}
                     //helperText="Type of Registration"
                 >
          
@@ -143,7 +146,7 @@ const UpdateUserProfile = () => {
                         id="password"
                         type={values.showPassword ? 'text' : 'password'}
                         //value={values?.password}
-                        onChange={(e) => setValues((prev) => ({...prev, password: e.target.value }))}
+                        onChange={(e) => setUser((prev) => ({...prev, password: e.target.value }))}
                         endAdornment={
                         <InputAdornment position="end">
                             <IconButton
@@ -159,13 +162,13 @@ const UpdateUserProfile = () => {
                         label="Password"
                     />
                 </FormControl>
-                <FormControl fullWidth variant="outlined">
+                {/* <FormControl fullWidth variant="outlined">
                     <InputLabel htmlFor="outlined-adornment-password">Confirm Password</InputLabel>
                     <OutlinedInput
                         id="outlined-adornment-password"
                         type={values.showPassword ? 'text' : 'password'}
                         //value={values.password}
-                        onChange={(e) => setValues((prev) => ({...prev, password: e.target.value }))}
+                        onChange={(e) => setUser((prev) => ({...prev, password: e.target.value }))}
                         endAdornment={
                         <InputAdornment position="end">
                             <IconButton
@@ -180,7 +183,10 @@ const UpdateUserProfile = () => {
                         }
                         label="Password"
                     />
-                </FormControl>                                
+                </FormControl>                                 */}
+                <TextField fullWidth className="border border-gray-50" 
+                    helperText=" "
+                />
             </div>
             <div className="flex flex-col items-center gap-6 w-72">  
                 <TextField
@@ -189,12 +195,12 @@ const UpdateUserProfile = () => {
                     helperText="Your email"  
                     value={user?.email}
                     fullWidth
-                    onChange={(e) => setValues((prev) => ({...prev, email: e.target.value }))}
+                    onChange={(e) => setUser((prev) => ({...prev, email: e.target.value }))}
                 />                              
                 <TextField
                     id="address"
                     helperText="address"
-                    onChange={(e) => setValues((prev) => ({...prev, address: e.target.value }))}
+                    onChange={(e) => setUser((prev) => ({...prev, address: e.target.value }))}
                     value={values.address}
                     multiline
                     rows={4}

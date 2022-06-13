@@ -8,8 +8,8 @@ const RegisterPage = () => {
   return (
     <>
         <NavBar />
-        <div className="relative top-40">
-        <Register />
+        <div className="relative top-20">
+          <Register />
         </div>
     </>
   )

@@ -114,62 +114,87 @@ console.log(eventData);
   
   return (
     <>
-      <h1 className="text-3xl font-bold border-2 mt-3 text-center p-2 w-full shadow-lg">OnGoing Events</h1>
+      <h1 className="text-xl md:text-3xl font-bold md:border-2 mt-3 text-center p-2 w-full md:shadow-md">OnGoing Events</h1>
       <div className="flex flex-col items-center justify-center gap-10">      
         {
           eventData?.length > 0 ?
           eventData?.map((data) => (
             data.status === "active" && (
-            <div className="flex flex-col md:flex-row items-center justify-around gap-5 lg:gap-0 px-5 lg:px-0 bg-gray-100 md:w-3/4 py-5 rounded-md shadow-2xl">
-              <div className="w-full md:w-64 h-52 lg:w-80 lg:h-60">
-                <img src={`${data.image}`} alt="Loading" className="w-full h-full rounded-sm"/>
-              </div>
-              <div className="flex flex-col items-start gap-3 w-full md:w-1/2">
-                <h2 className="text-xl font-bold">{data.eventName}</h2>
-                <div className="flex items-start gap-3">
-                  <h4 className="text-lg font-semibold w-1/4">Speakers</h4>
-                  <p className="text-sm lg:text-lg font-light text-gray-800 w-full">{data.speaker}</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <h4 className="text-lg font-semibold w-1/4">Eligibility</h4>
-                  <p className="text-sm lg:text-lg font-light text-gray-800 w-full">{data.eligibility.join(" , ")}</p>
-                </div>
-                <p className="text-sm lg:text-lg font-light text-gray-800">{data.description}</p>
+            // <div className="flex flex-col md:flex-row items-center justify-around gap-5 lg:gap-0 px-5 lg:px-0 bg-gray-100 md:w-3/4 py-5 rounded-md shadow-2xl">
+            //   <div className="w-full md:w-64 h-52 lg:w-80 lg:h-60">
+            //     <img src={`${data.image}`} alt="Loading" className="w-full h-full rounded-sm"/>
+            //   </div>
+            //   <div className="flex flex-col items-start gap-3 w-full md:w-1/2">
+            //     <h2 className="text-xl font-bold">{data.eventName}</h2>
+            //     <div className="flex items-start gap-3">
+            //       <h4 className="text-lg font-semibold w-1/4">Speakers</h4>
+            //       <p className="text-sm lg:text-lg font-light text-gray-800 w-full">{data.speaker}</p>
+            //     </div>
+            //     <div className="flex items-start gap-3">
+            //       <h4 className="text-lg font-semibold w-1/4">Eligibility</h4>
+            //       <p className="text-sm lg:text-lg font-light text-gray-800 w-full">{data.eligibility.join(" , ")}</p>
+            //     </div>
+            //     <p className="text-sm lg:text-lg font-light text-gray-800">{data.description}</p>
 
-              </div>
-              <div>
-                {/* <div>
-                  <p className="text-sm lg:text-lg font-light text-gray-800">{data.conferenceStartDate}</p>
-                  <p className="text-sm lg:text-lg font-light text-gray-800">{data.conferenceEndDate}</p>
-                </div> */}
-                <div>
+            //   </div>
+            //   <div>
+            //     {/* <div>
+            //       <p className="text-sm lg:text-lg font-light text-gray-800">{data.conferenceStartDate}</p>
+            //       <p className="text-sm lg:text-lg font-light text-gray-800">{data.conferenceEndDate}</p>
+            //     </div> */}
+            //     <div>
                   
+            //     </div>
+            //     <button 
+            //       className="bg-green-400 px-4 py-2 rounded-lg"
+            //       onClick={() => { eventRegister({data}) }}
+            //     >
+            //       Register
+            //     </button>
+            //   </div>
+            // </div>
+            <div className="flex flex-col items-center justify-center gap-5 lg:gap-2 px-5 lg:px-10 bg-gray-100 md:w-3/4 py-5 rounded-md shadow-2xl border">
+              <div className="w-full flex flex-col md:flex-row items-center justify-between gap-6">
+                <div className="w-full md:w-64 h-52 lg:w-2/3 lg:h-72">
+                  <img src={`${data.image}`} alt="Loading" className="w-full h-full rounded-sm"/>
                 </div>
-                <button 
-                  className="bg-green-400 px-4 py-2 rounded-lg"
+                <div className="md:w-1/2 flex flex-col gap-2">
+                  <div className="flex items-center md:items-start gap-3">
+                    <h4 className="text-lg font-semibold w-1/4">Speakers:</h4>
+                    <p className="text-sm lg:text-lg font-light text-gray-800 w-full">{data.speaker}</p>
+                  </div>      
+                  <div className="flex items-center md:items-start gap-3">
+                    <h4 className="text-lg font-semibold w-1/4">Eligibility</h4>
+                    <p className="text-sm lg:text-lg font-light text-gray-800 w-full">{data.eligibility.join(" , ")}</p>
+                  </div>          
+                  {/* <div className="flex items-start gap-3">
+                    <p className="text-sm lg:text-lg font-light text-gray-800">{data.conferenceStartDate}  to </p>
+                    <p className="text-sm lg:text-lg font-light text-gray-800">{data.conferenceEndDate}</p>
+                  </div>   */}
+                </div>
+                
+              </div>      
+              <div className="flex flex-col md:flex-row gap-3 items-center justify-between w-full">
+                <div className="w-full flex flex-col gap-2 w-2/3">
+                  <h2 className="text-xl font-bold">{data.eventName?.toUpperCase()}</h2>
+                  <p className="text-sm lg:text-lg font-light text-gray-800">{data.description}</p>
+                </div>  
+                <div className="flex flex-col items-center gap-1 w-2/6">
+                  <h4 className="text-lg font-semibold">Venue : {data.venues}</h4>
+                  <h4 className="text-lg font-semibold">Price : <span className="text-green-700">{data.conferenceType}</span></h4>                
+                  <button 
+                  className="bg-green-600 text-gray-50 text-xl font-bold w-full md:w-auto px-4 py-1 rounded-lg"
                   onClick={() => { eventRegister({data}) }}
                 >
                   Register
                 </button>
-              </div>
+                </div>
+              </div>                        
             </div>
             )
           )) : (
             <div>
-              <div className="flex flex-col md:flex-row items-center justify-around gap-5 lg:gap-0 px-5 lg:px-0 bg-gray-100 md:w-3/4 py-5 rounded-md shadow-2xl">
-              <div className="w-full md:w-64 h-52 lg:w-80 lg:h-60 border">
-              </div>
-              <div className="flex flex-col items-start gap-3 w-full md:w-1/2">
-                <h2 className="text-xl font-bold"></h2>
-                <p className="text-sm lg:text-lg font-light text-gray-800"></p>
-              </div>
-              <div>
-                <button 
-                  className="bg-gray-100 border px-4 py-2 rounded-lg"
-                >
-                </button>
-              </div>
-            </div>              
+              Loading ....
             </div>
           )
         }         

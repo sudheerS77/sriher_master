@@ -71,14 +71,15 @@ export const addUser = (userData) => async (dispatch) => {
 }
 export const updateUserData = (userData) => async (dispatch) => {
     try {
-        const user = axios({
+        const user = await axios({
             method: "PUT",
             url: `${API_URL}/user/update`,
             data: {userData},
         }).then((response) => {
             return response;
         });
-        return dispatch({ type: UPDATE_USER, payload:  (await user).data});
+        console.log(user);
+        return dispatch({ type: UPDATE_USER });
     } catch (error) {
         if(error.response.status === 500) {
             alert(error.response.data.error);

@@ -99,9 +99,9 @@ const Register = () => {
                 </button>
             </div> 
         }
-        <h2 className="mx-40 text-2xl font-bold text-gray-500 mb-4">Register</h2>
+        <h2 className="text-center md:mx-40 text-2xl font-bold text-gray-500 mb-4">Register</h2>
         <div className="flex flex-col lg:flex-row items-center justify-center gap-5">
-            <div className="flex flex-col items-center gap-5 w-72">                
+            <div className="flex flex-col items-center gap-5 w-full px-3 md:w-72">                
                 <TextField
                     required
                     id="fullName"
@@ -136,7 +136,7 @@ const Register = () => {
                 />
                 
             </div>
-            <div className="flex flex-col items-center gap-5 w-72">                
+            <div className="flex flex-col items-center gap-5 w-full px-3 md:w-72">                
                 <TextField
                     required
                     id="phoneNumber"
@@ -205,7 +205,7 @@ const Register = () => {
                     />
                 </FormControl>                                
             </div>
-            <div className="flex flex-col items-center gap-6 w-72">  
+            <div className="flex flex-col items-center gap-6 w-full px-3 md:w-72">  
                 <TextField
                     required
                     id="email"

@@ -49,17 +49,17 @@ const Event = () => {
       {/* <div className="md:ml-10 w-2/5">
         <Tag eventName={"Events"} />
       </div> */}
-      <div className="flex flex-row items-center justify-around md:justify-start md:gap-10 mt-20 md:mt-40 md:ml-10">
-        <div className="w-40 md:w-72 h-24 md:h-36  rounded-xl flex items-center justify-center shadow-xl border">
-          <h4 className="text-sm md:text-xl text-gray-900 font-bold">onGoingEvents Events {onGoingEventsCount}</h4>
+      <div className="flex flex-row bg-gray-200 md:bg-gray-50 items-center justify-around md:justify-start md:gap-10 mt-14 md:mt-20 lg:mt-40 md:ml-10">
+        <div className="w-40 md:w-72 h-24 md:h-36  rounded-xl flex items-center justify-center md:shadow-xl md:border">
+          <h4 className="text-sm md:text-xl text-gray-900 font-md md:font-bold">ON-Going Events {onGoingEventsCount}</h4>
         </div>
-        <div className="w-40 md:w-72 h-24 md:h-36 rounded-xl flex items-center justify-center shadow-xl border">
-          <h4 className="text-sm md:text-xl text-gray-900 font-bold">Completed Events {completedEventsCount}</h4>
+        <div className="w-40 md:w-72 h-24 md:h-36 rounded-xl flex items-center justify-center md:shadow-xl md:border">
+          <h4 className="text-sm md:text-xl text-gray-900 font-md md:font-bold">Completed Events {completedEventsCount}</h4>
         </div>
       </div>
      
 
-      <div className="flex flex-col gap-10 w-full items-center justify-center mt-5 pb-10">    
+      <div className="flex flex-col gap-10 w-full items-center justify-center md:mt-5 pb-10">    
         <OnGoingEvents />
         <CompletedEvents />
       </div>

@@ -4,7 +4,7 @@ import express from "express";
 import helmet from "helmet";
 import cors from "cors";
 import passport from "passport";
-import session from "cookie-session";
+import session from "express-session";
 
 //configs
 import routeConfig from "./config/route.config";

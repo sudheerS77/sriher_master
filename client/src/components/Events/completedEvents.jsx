@@ -14,7 +14,7 @@ const CompletedEvents = () => {
 
   return (
     <>
-      <h1 className="text-3xl font-bold border-2 shadow-lg mt-3 text-center p-2 w-full">Completed Events</h1>
+      <h1 className="text-3xl font-bold border-2 shadow-md mt-3 text-center p-2 w-full">Completed Events</h1>
         <div className="flex flex-wrap mx-6 md:mx-32 items-center justify-between gap-8">
           {eventData?.map((data) => (
             data.status !== "active" && (
