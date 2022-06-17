@@ -7,13 +7,13 @@ import { API_URL } from "../../../key";
 
 export const getUser = (_id) => async (dispatch) => {
     try {
-        const User = axios({
+        const User = await axios({
             method: "GET",
             url: `${API_URL}/user/${_id}`
         }).then((response) => {
             return response;
         });        
-        return dispatch({ type: GET_USERS, payload: (await User).data });
+        return dispatch({ type: GET_USERS, payload: User.data });
     } catch (error) {
         if(error.response.status === 500) {
             alert(error.response.data.error);
@@ -23,14 +23,14 @@ export const getUser = (_id) => async (dispatch) => {
 }
 export const getAllUsers = () => async (dispatch) => {
     try {
-        const userList = axios({
+        const userList = await axios({
             method: "GET",
             url: `${API_URL}/user/allusers`
         }).then((response) => {
             return response;
         });        
         console.log(userList);
-        return dispatch({ type: ALL_USERS, payload: (await userList).data });
+        return dispatch({ type: ALL_USERS, payload: userList.data });
     } catch (error) {
         if(error.response.status === 500) {
             alert(error.response.data.error);
@@ -40,13 +40,13 @@ export const getAllUsers = () => async (dispatch) => {
 }
 // export const getSpecificUser = (_id) => async (dispatch) => {
 //     try {
-//         const specificProjectList = axios({
+//         const specificProjectList = await axios({
 //             method: "GET",
 //             url: `${API_URL}/user/get/${_id}`
 //         }).then((response) => {
 //             return response;
 //         });
-//         return dispatch({ type: GET_SPECIFIC_USER, payload: (await specificProjectList).data });
+//         return dispatch({ type: GET_SPECIFIC_USER, payload: specificProjectList.data });
 //     } catch (error) {   
 //         return dispatch({ type: "ERROR", payload: error });
 //     }
@@ -54,14 +54,14 @@ export const getAllUsers = () => async (dispatch) => {
 
 export const addUser = (userData) => async (dispatch) => {
     try {
-        const user = axios({
+        const user = await axios({
             method: "POST",
             url: `${API_URL}/`,
             data: {userData},
         }).then((response) => {
             return response;
         });
-        return dispatch({ type: ADD_USER, payload:  (await user).data});
+        return dispatch({ type: ADD_USER, payload:  user.data});
     } catch (error) {
         if(error.response.status === 500) {
             alert(error.response.data.error);
@@ -71,15 +71,15 @@ export const addUser = (userData) => async (dispatch) => {
 }
 export const updateUserData = (userData) => async (dispatch) => {
     try {
-        const user = await axios({
+        const user = await await axios({
             method: "PUT",
             url: `${API_URL}/user/update`,
             data: {userData},
         }).then((response) => {
             return response;
         });
-        console.log(user);
-        return dispatch({ type: UPDATE_USER });
+        window.location.reload(false);
+        return dispatch({ type: UPDATE_USER, payload: user.data });
     } catch (error) {
         if(error.response.status === 500) {
             alert(error.response.data.error);
@@ -90,7 +90,7 @@ export const updateUserData = (userData) => async (dispatch) => {
 
 export const deleteUser = (_id) => async (dispatch) => {
     try {
-        const deleteUser = axios({
+        const deleteUser = await axios({
             method: "DELETE",
             url: `${API_URL}/user/delete/${_id}`,
         }).then((response) => {
@@ -109,14 +109,14 @@ export const deleteUser = (_id) => async (dispatch) => {
 
 export const getMySelf = () => async (dispatch) => {
     try {
-        const User = axios({
+        const User = await axios({
             method: "GET",
             url: `${API_URL}/user/`
         }).then((response) => {
             return response;
         });        
         console.log(User);
-        return dispatch({ type: SELF, payload: (await User).data });
+        return dispatch({ type: SELF, payload: User.data });
     } catch (error) {
         if(error.response.status === 500) {
             alert(error.response.data.error);

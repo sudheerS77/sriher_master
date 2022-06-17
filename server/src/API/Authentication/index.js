@@ -53,14 +53,18 @@ Method    POST
 Router.post("/change-password", async(req, res) => {
     try {
         const data  = await req.body;
+        console.log(data);
         const bcryptSalt = await bcrypt.genSalt(8);
         const hashedPassword = await bcrypt.hash(data.password, bcryptSalt);
         const updateData = {
             password: hashedPassword
         }
-        const r = await UserModel.findOneAndUpdate(
-            { _id: data.id },
-            { $set: updateData }
+        console.log(updateData);
+         await UserModel.findOneAndUpdate(
+            { _id: data._id },            
+            { $set: {
+                password: updateData.password
+            } }
         );
         return res.status(200).json({ message: "password changed successfully" });
 

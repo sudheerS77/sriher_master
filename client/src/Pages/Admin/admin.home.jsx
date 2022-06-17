@@ -1,29 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { FaUserFriends, FaUserTie } from 'react-icons/fa'
-import { ImUserTie } from "react-icons/im";
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { FaUserFriends, FaUserTie } from "react-icons/fa";
+
 //Components
-import SideBar from '../../components/AdminComponents/siderbar'
-import AdminNavBar from '../../components/AdminComponents/adminNavBar';
-import Card from '../../components/AdminComponents/card';
-import DataTable from '../../components/AdminComponents/dataTable';
+import SideBar from "../../components/AdminComponents/siderbar";
+import AdminNavBar from "../../components/AdminComponents/adminNavBar";
+import Card from "../../components/AdminComponents/card";
+import DataTable from "../../components/AdminComponents/dataTable";
 
 //Redux actions
-import { getAllUsers } from '../../Redux/Reducer/User/user.action'; 
+import { getAllUsers } from "../../Redux/Reducer/User/user.action";
 
-const AdminHomePage = () => {    
-  const [userData, setUserData] = useState([]);  
+const AdminHomePage = () => {
+  const [userData, setUserData] = useState([]);
   var pg = 0;
   var faculty = 0;
   var international = 0;
 
   userData.map((data) => {
-    if(data.typeOfRegistration === "Postgraduate") pg=pg+1;
-    if(data.typeOfRegistration === "Faculty") faculty+=1;
-    if(data.typeOfRegistration === "International") international+=1;
-  
-  })
+    if (data.typeOfRegistration === "Postgraduate") pg = pg + 1;
+    if (data.typeOfRegistration === "Faculty") faculty += 1;
+    if (data.typeOfRegistration === "International") international += 1;
+  });
   const cardData = [
     {
       name: "TOTAl USERS",
@@ -44,8 +42,8 @@ const AdminHomePage = () => {
       name: "International",
       count: international,
       icon: <FaUserTie />,
-    }
-  ]
+    },
+  ];
 
   // const getUsersData = () => {
   //   axios.get("http://localhost:4000/user/allusers")
@@ -55,40 +53,40 @@ const AdminHomePage = () => {
   //   })
   //   .catch(e => alert("Cant get User Data"))
   // }
-  
+
   const reduxState = useSelector((globalStore) => globalStore.user.allUsers);
 
-      useEffect(() => {
-        reduxState?.user && setUserData(reduxState.user);
-      }, [reduxState])
+  useEffect(() => {
+    reduxState?.user && setUserData(reduxState.user);
+  }, [reduxState]);
 
-      const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-      useEffect(() => {
-        dispatch(getAllUsers());
-      },[]);
+  useEffect(() => {
+    dispatch(getAllUsers());
+  }, []);
   return (
     <>
-        <div className="flex flex-row w-full">
-            <div className=" w-1/5">
-              <SideBar />
-            </div>
-            <div className="w-full flex flex-col">
-              <AdminNavBar />
-              <div className="flex flex-col gap-10 mt-5">
-               <div className="flex flex-row items-center justify-around w-full">
-               {
-                  cardData.map((data) => <Card {...data}/>)
-                }
-               </div>
-                <div className='mx-10'>
-                  <DataTable />
-                </div>
-              </div>
-            </div>
+      <div className="flex flex-row w-full">
+        <div className=" w-1/5">
+          <SideBar />
         </div>
+        <div className="w-full flex flex-col">
+          <AdminNavBar />
+          <div className="flex flex-col gap-10 mt-5">
+            <div className="flex flex-row items-center justify-around w-full">
+              {cardData.map((data) => (
+                <Card {...data} />
+              ))}
+            </div>
+            <div className="mx-10">
+              <DataTable />
+            </div>
+          </div>
+        </div>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default AdminHomePage
+export default AdminHomePage;

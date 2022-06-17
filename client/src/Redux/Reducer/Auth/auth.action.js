@@ -18,10 +18,10 @@ export const signIn = (userData) => async (dispatch) => {
         const userRole =  User.data.userRole;
         localStorage.setItem("SRCUser", JSON.stringify({ token:  User.data.token }));
         if(userRole === "user") {
-            window.location.href = `${CLIENT_URL}`
+            window.location.href = `${CLIENT_URL}`;
         } 
         if(userRole === "admin") {
-            window.location.href = `${CLIENT_URL}/admin`
+            window.location.href = "/admin";
         }
 
         return dispatch({ type: SIGN_IN , payload:  User.data });
@@ -72,7 +72,8 @@ export const signOut = () => async (dispatch) => {
     try {
       localStorage.removeItem("SRCUser");
       clearUser();
-      window.location.href = `${CLIENT_URL}/`
+      window.location.reload(false);
+      window.location.href = "/"
       
       return dispatch({ type: SIGN_OUT, payload: {} });
     } catch (error) {

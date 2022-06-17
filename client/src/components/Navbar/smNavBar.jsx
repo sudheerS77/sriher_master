@@ -6,6 +6,7 @@ import {GiHamburgerMenu} from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import logo from "../assets/logo.png";
 
+import { HiLogout } from "react-icons/hi";
 //Redux action
 import { signOut } from "../../Redux/Reducer/Auth/auth.action";
 
@@ -33,8 +34,8 @@ const SmNavBar = () => {
   const [ isDropDownOpen, setIsDropDownOpen ] =  useState(false);
   return (
     <div className="">
-      <div className="fixed md:hidden z-10 w-full h-14 bg-gray-50 shadow-xl border-b flex flex-row items-center justify-between px-4">
-        <div className="w-52 h-full border border-gray-100 my-1">
+      <div className="fixed md:hidden z-10 w-full h-14 bg-gray-50 shadow-xl border-b flex flex-row items-center justify-between gap-2 pr-4">
+        <div className="w-80 h-full border border-gray-100 my-1">
           <img src={logo} alt="Logo" className="w-full h-full"/>
         </div>        
         <div className="w-6 h-6"
@@ -72,21 +73,23 @@ const SmNavBar = () => {
                   <Link to={"/projects"}>Projects</Link>
                 </li> 
                 {reduxState?.user ? (
-                  <div className='flex flex-col items-center justify-center gap-4 block px-4 py-2 hover:bg-gray-100 font-bold w-full border'>
+                  <div className='flex flex-col items-start justify-center gap-4 block px-0 py-2 hover:bg-gray-100 font-bold w-full border'>
                      <li className={ type==="conference" && 'bg-slate-900 text-center w-full border border-grey-50 shadow-xl py-1 px-2 rounded-sm text-blue-50 transition duration-700 ease-in-out delay-150'}>
                       <Link to={"/conference"}>Conference</Link>
                     </li> 
                     <li className={ type==="feedback" && 'bg-slate-900 text-center w-full border border-grey-50 shadow-xl py-1 px-2 rounded-sm text-blue-50 transition duration-700 ease-in-out delay-150'}>
                       <Link to={"/feedback"}>Feedback</Link>
                     </li>
-                    <li className={ type==="login" && 'bg-slate-900 text-center w-full border border-grey-50 shadow-xl py-1 px-2 rounded-sm text-blue-50 transition duration-700 ease-in-out delay-150'}>
-                      <Link to={"/profile"}>Profile</Link>
+                    <li className={ type==="profile" && 'bg-slate-900 text-center w-full border border-grey-50 shadow-xl py-1 px-2 rounded-sm text-blue-50 transition duration-700 ease-in-out delay-150'}>
+                      <Link to={"/profile"} className="w-full">
+                        Profile
+                      </Link>
                     </li>
                     <li className={ type==="register" && 'bg-slate-900 text-center w-full border border-grey-50 shadow-xl py-1 px-2 rounded-sm text-blue-50 transition duration-700 ease-in-out delay-150'}>
                       <button 
-                        className="py-1 font-bold"
+                        className="py-1 font-bold flex items-center gap-2 justify-center"
                         onClick={signOutHandler} >
-                        Logout
+                        Logout <HiLogout className="text-xl text-red-700"/>
                       </button>
                     </li>   
                   </div>

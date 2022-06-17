@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from 'react-router-dom';
-import { BiEdit } from "react-icons/bi";
-import { MdDelete, MdViewInAr } from "react-icons/md";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -13,7 +10,8 @@ import Paper from "@mui/material/Paper";
 //import AddAchievement from './addAchievement';
 
 //Redux actions
-import { getEvents, getUserEvent, deleteEvent } from '../../Redux/Reducer/Events/event.action';
+import { getUserEvent } from '../../Redux/Reducer/Events/event.action';
+import SmConferenceList from './smConferenceList';
 
 const ConferenceList = () => {
   const [events, setEvents] = useState([]);
@@ -26,20 +24,21 @@ const ConferenceList = () => {
   console.log(userState);
   console.log(user_id);
   useEffect(() => {
-    dispatch(getUserEvent(user_id));
+    dispatch(getUserEvent(user_id))
   }, []);
 
   useEffect(() => {
     reduxState?.userEvents && setEvents(reduxState.userEvents.userEvents);
   }, [reduxState]);
     
+  console.log("EVNETSSSSSSS");
   console.log(events);
   let idCount = 1;
 
   
   return (
     <>
-        <div className="border border-gray-200"> 
+        <div className="border border-gray-200 hidden md:block"> 
             <TableContainer component={Paper} className="table">
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
@@ -71,6 +70,9 @@ const ConferenceList = () => {
                     </TableBody>
                 </Table>
             </TableContainer>  
+        </div>
+        <div className='md:hidden'>
+            <SmConferenceList events={events}/>
         </div>
     </>
   )

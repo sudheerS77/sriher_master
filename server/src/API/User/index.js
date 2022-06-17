@@ -55,12 +55,11 @@ Router.put("/update", async (req, res) => {
     try {
       console.log("USERRRRRRRRRR");
       const data = req.body.userData;
-      console.log(data);
+      
       const user = await UserModel.findOneAndUpdate(
           { _id: data._id },
           { $set: data }
       );
-      console.log(user);
   
       return res.status(200).json({ message: "user profile updated successfully", data: user });
     } catch (error) {

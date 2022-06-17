@@ -36,7 +36,7 @@ Router.post("/add-user-feedback", async (req, res) => {
         const data = req.body.feedbackData;
         console.log(data);
         await FeedbackModel.create(data)
-        res.json({ data })
+        return res.status(200).json({ message: "Your Feedback is successfully submitted" })
     } catch (error) {
         res.status(500).json({error: error.message});
     }
@@ -54,7 +54,8 @@ METHOD      :   GET
 Router.get("/getfacultyfeedbackdata", async (req, res) => {
     try {        
         const feedbackData = await FacultyFeedbackModel.find({});
-        return res.status(200).json({ feedbackData });
+        const feedback = await FeedbackModel.find({});
+        return res.status(200).json({ feedbackData, feedback });
     } catch (error) {
         res.status(500).json({error: error.message});
     }
@@ -140,13 +141,6 @@ Router.delete("/delete-faculty-feedback/:_id", async (req, res) => {
 });
 
 
-
-
-
-
-
-
-
 /*
 show the list of faculty in the admin
 ROUTE       :   /
@@ -162,15 +156,16 @@ Router.get("/faculty-feedback/:_id", async (req, res) => {
         var moderate =  0
         var unsatisified = 0
         var poor = 0
-        const fdata = await FeedbackModel.find();        
+        const fdata = await FeedbackModel.find();  
+        var feedbackusers = await FeedbackModel.find({ faculty_id: req.params._id });
         fdata.map((data) => {
-            //console.log(data);
+            console.log(data);
             if(data.faculty_id === req.params._id) {
-                if(data.rating === "5") excellent = excellent + 1;
-                if(data.rating === "4") good = good + 1;
-                if(data.rating === "3") moderate = moderate + 1;
-                if(data.rating === "2") unsatisified = unsatisified + 1;
-                if(data.rating === "1") poor = poor + 1;
+                if(data.rating === 5) excellent = excellent + 1;
+                if(data.rating === 4) good = good + 1;
+                if(data.rating === 3) moderate = moderate + 1;
+                if(data.rating === 2) unsatisified = unsatisified + 1;
+                if(data.rating === 1) poor = poor + 1;
             }
         })
         const rating = [
@@ -181,7 +176,7 @@ Router.get("/faculty-feedback/:_id", async (req, res) => {
             poor
         ]
         console.log(rating);
-        res.json({ rating })
+        res.json({ rating, data: feedbackusers })
     } catch (error) {
         res.status(500).json({error: error.message});
     }

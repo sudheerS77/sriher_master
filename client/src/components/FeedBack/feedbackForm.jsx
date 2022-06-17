@@ -7,22 +7,23 @@ import { addUserFeedback, getFeedback } from '../../Redux/Reducer/Feedback/feedb
 
 const FeedbackhtmlForm = () => {
     const { type } = useParams();
-    console.log(type);
-    const [ faculty, setFaculty ] = useState([]);
+    const [ faculty, setFaculty ] = useState([{
+        faculty_id: ""
+    }]);
+    const [ user, setuser] = useState();
+    const [ feedbackData, setFeedbackData ] = useState([]); 
     const dispatch = useDispatch(); 
-    
-    // useEffect(() => {
-    //     dispatch(getFeedback())
-    // }, [])
+        
     
     const reduxState = useSelector((globalStore) => globalStore.Feedback)      
-    console.log(reduxState.feedback.feedbackData);
+    const userState = useSelector((userStore) => userStore.user)
     useEffect(() => {
-        reduxState.feedback && setFaculty(reduxState.feedback.feedbackData);
+        reduxState?.feedback && setFaculty(reduxState.feedback.feedbackData);
+        userState?.user && setuser(userState.user?.user);
     }, [reduxState]);
-
-    const [ feedbackData, setFeedbackData ] = useState([        
-    ]); 
+    useEffect(() => {
+        dispatch(getFeedback());
+      }, []);
     
     const handleChange = (event) => {          
         const value = event.target.value;
@@ -32,17 +33,10 @@ const FeedbackhtmlForm = () => {
         })        
     }
     
-    console.log(feedbackData);
+    //console.log(feedbackData);
 
-    const submit = (_id) => {
-        const data = [
-            {
-                ...feedbackData,
-                faculty_id: _id
-            }
-        ]    
-        console.log(data);
-        dispatch(addUserFeedback({data}))
+    const submit = () => {   
+        dispatch(addUserFeedback(feedbackData))
         //const data = feedbackData;
 
         // const res = await axios.post("http://localhost:4000/feedback/add-feedback", data);
@@ -58,12 +52,12 @@ const FeedbackhtmlForm = () => {
         //submit();
     }
   return (
-    <div className="flex flex-col items-center justify-center">
-        {faculty?.length > 0 ? (            
+    <div className="flex flex-col items-center justify-center md:mx-10 lg:mx-44">
+        {faculty?.length > 0 ? (    
             faculty?.map((row) => (
                 row.feedback_status === "Active" && (
-                    <div className="flex fle-row flex-row-reverse items-start justify-around bg-cyan-900 py-6 border border-gray-200 shadow lg:mx-44 rounded-lg">        
-                        <div className="w-1/2">
+                    <div className="flex flex-col md:flex-row md:flex-row-reverse items-center w-full md:items-start justify-around bg-cyan-900 py-6 border border-gray-200 shadow lg:mx-44 rounded-lg">        
+                        <div className="mx-6 md:mx-1md:w-1/2">
                             <div className="w-full">
                                 <img src={row.image} 
                                     alt=""
@@ -75,7 +69,7 @@ const FeedbackhtmlForm = () => {
                                 <p className="text-sm font-light">{row.position}</p>
                             </div>
                         </div>
-                        <div className="flex flex-col items-start pl-4 md:items-center gap-6">
+                        <div className="flex flex-col items-center md:items-start pl-4 md:items-center gap-6">
                             {/* <div>
                                 <label htmlFor="">Name of the student / Faculty</label>
                                 <input type="text" placeholder='name'className="transparent px-6 py-2 border-gray-100 rounded-lg"/>
@@ -85,7 +79,7 @@ const FeedbackhtmlForm = () => {
                                     Name of the student / Faculty
                                 </label>
                                 <input 
-                                    className="appearance-none border border-gray-400 shadow rounded w-full py-2 px-3 w-96 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"                     
+                                    className="appearance-none border border-gray-400 shadow rounded w-full py-2 px-3 w-80 md:w-96 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"                     
                                     name="name" 
                                     type="text" 
                                     placeholder="Username" 
@@ -97,11 +91,12 @@ const FeedbackhtmlForm = () => {
                                     Email
                                 </label>
                                 <input 
-                                    className="appearance-none border border-gray-400 shadow rounded w-full py-2 px-3 w-96 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                                    className="appearance-none border border-gray-400 shadow rounded w-full py-2 px-3 w-80 md:w-96 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
                                     name="email" 
                                     type="email" 
                                     placeholder="email" 
-                                    onChange={handleChange}
+                                    //onChange={handleChange}
+                                    onChange={(e) => setFeedbackData((prev) => ({...prev, email: e.target.value, faculty_id: row._id}))}
                                     required
                                     />
                             </div>
@@ -110,7 +105,7 @@ const FeedbackhtmlForm = () => {
                                     Affilation
                                 </label>
                                 <input 
-                                    className="appearance-none border border-gray-400 shadow rounded w-full py-2 px-3 w-96 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                                    className="appearance-none border border-gray-400 shadow rounded w-full py-2 px-3 w-80 md:w-96 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
                                     name="affliation" 
                                     type="text" 
                                     placeholder="" 
@@ -122,7 +117,7 @@ const FeedbackhtmlForm = () => {
                                     Designatin / Year of study
                                 </label>
                                 <input 
-                                    className="appearance-none border border-gray-400 shadow rounded w-full py-2 px-3 w-96 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                                    className="appearance-none border border-gray-400 shadow rounded w-full py-2 px-3 w-80 md:w-96 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
                                     name="designation" 
                                     type="text" 
                                     placeholder="Username" 
@@ -134,7 +129,7 @@ const FeedbackhtmlForm = () => {
                                     Phone Number
                                 </label>
                                 <input 
-                                    className="appearance-none border border-gray-400 shadow rounded w-full py-2 px-3 w-96 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                                    className="appearance-none border border-gray-400 shadow rounded w-full py-2 px-3 w-80 md:w-96 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
                                     name="phoneNumber" 
                                     type="phone" 
                                     placeholder="98578 78985" 
@@ -186,7 +181,7 @@ const FeedbackhtmlForm = () => {
                                     Any feedback to improve?
                                 </label>
                                 <input 
-                                    className="appearance-none border border-gray-400 shadow rounded w-full py-2 px-3 w-96 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                                    className="appearance-none border border-gray-400 shadow rounded w-full py-2 px-3 w-80 md:w-96 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
                                     name="feedback"
                                     id="feedback" 
                                     type="text" 
@@ -202,10 +197,10 @@ const FeedbackhtmlForm = () => {
                                     value={textarea} 
                                     name="suggestion"
                                     onChange={handleChange} 
-                                    className="appearance-none border border-gray-400 shadow rounded w-full py-2 px-3 w-96 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                                    className="appearance-none border border-gray-400 shadow rounded w-full py-2 px-3 w-80 md:w-96 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
                                 ></textarea> */}
                                 <input 
-                                    className="appearance-none border border-gray-400 shadow rounded w-full py-2 px-3 w-96 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                                    className="appearance-none border border-gray-400 shadow rounded w-full py-2 px-3 w-80 md:w-96 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
                                     name="suggestion"
                                     id="suggestion" 
                                     type="text" 
@@ -215,13 +210,12 @@ const FeedbackhtmlForm = () => {
                             </div>
                             <div>                                
                                 <button                                     
-                                    className="p-2 text-xl font-bold bg-green-600 rounded-lg w-96 text-gray-50" 
+                                    className="p-2 text-xl font-bold bg-green-600 rounded-lg w-80 md:w-96 text-gray-50" 
                                     name="faculty_id"
                                     id='faculty_id'
+                                    //onChange={(e) => setEventData((prev) => ({...prev, currentHome: e.target.value}))}
                                     onClick={() => {
-                                        console.log("SUBMITTTTTTTTTT");
-                                        console.log(row._id);
-                                        submit(row._id);
+                                        submit();
                                     }}
                                     >
                                     Submit

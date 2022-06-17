@@ -1,30 +1,20 @@
-import React, {useEffect} from 'react';
-import { useDispatch } from "react-redux";
+import React from "react";
 
 //Components
 import NavBar from "../components/Navbar/NavBar";
-import Footer from "../components/footer";
 
 //Redux actions
-import FeedbackForm from '../components/FeedBack/feedbackForm';
-import { getFeedback } from '../Redux/Reducer/Feedback/feedback.action';
+import FeedbackForm from "../components/FeedBack/feedbackForm";
 
 const SpeakerFeedback = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getFeedback());
-  }, []);
- 
-  
   return (
     <>
       <NavBar />
-      <div className="py-40 ">
-        <FeedbackForm />        
+      <div className="pt-16 md:py-40 ">
+        <FeedbackForm />
       </div>
     </>
-  )
-}
+  );
+};
 
 export default SpeakerFeedback;

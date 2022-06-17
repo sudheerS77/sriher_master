@@ -38,7 +38,7 @@ const SideBar = () => {
                     <li className="flex items-center justify-start gap-4 pl-6 py-3.5 w-full border-b border-gray-300 hover:bg-gray-100">
                         <Link to="/admin/events" className="flex items-center justify-start gap-4 w-full">
                             <MdOutlineEmojiEvents className="w-7 h-7 text-yellow-500"/>
-                            Evenets
+                            Events
                         </Link>
                     </li>
                     <li className="flex items-center justify-start gap-4 pl-6 py-3.5 w-full border-b border-gray-300 hover:bg-gray-100">
@@ -86,7 +86,7 @@ const SideBar = () => {
                     <li className="flex items-center justify-start gap-4 pl-6 py-3.5 w-full border-b border-gray-300 hover:bg-gray-100">
                         <Link to="/admin/slider" className="flex items-center justify-start gap-4 w-full">
                             <MdViewCarousel className="w-7 h-7 text-cyan-800"/>
-                            Carousels
+                            Home Page Sliders
                         </Link>
                     </li>
                     <li className="flex items-center justify-start gap-4 pl-6 py-3.5 w-full border-b border-gray-300 hover:bg-gray-100">
@@ -107,7 +107,7 @@ const SideBar = () => {
                             Settings
                         </Link>
                     </li> */}
-                    {reduxState?.user && (
+                    {/* {reduxState?.user && (
                         <li className="flex items-center justify-start gap-4 pl-6 py-3.5 w-full border-b border-gray-300 text-red-600 hover:bg-red-400 hover:text-gray-50 bg-red-50">
                             <Link to="/admin/">
                                 <button onClick={signOutHandler} className="font-semibold  flex items-center justify-start gap-4 w-full">
@@ -116,7 +116,7 @@ const SideBar = () => {
                                 </button>
                             </Link>
                         </li>
-                    )}                                    
+                    )}                                     */}
                 </ul>
             </div>
 

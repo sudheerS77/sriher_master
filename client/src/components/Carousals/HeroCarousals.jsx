@@ -11,19 +11,6 @@ import { LGImageCarousal, SMImageCarousal } from './ImageCarousal';
 import { getSlider } from '../../Redux/Reducer/Slider/slider.action';
 
 const HeroCarousals = () => {
-
-    const [heroBanners, setHeroBanners] = useState([
-        "https://oralpath.sriher.com/resources/template/images/slider/slider1.jpg",
-        "https://oralpath.sriher.com/resources/template/images/slider_new/11.jpg",
-        "https://oralpath.sriher.com/resources/template/images/slider_new/3.jpg",
-        "https://oralpath.sriher.com/resources/template/images/slider_new/1.jpg",
-        "https://oralpath.sriher.com/resources/template/images/slider_new/4.jpg",
-        "https://oralpath.sriher.com/resources/template/images/slider_new/5.jpg",
-        "https://oralpath.sriher.com/resources/template/images/slider_new/6.jpg",
-        "https://oralpath.sriher.com/resources/template/images/slider_new/7.jpg",
-        "https://oralpath.sriher.com/resources/template/images/slider_new/8.jpg",
-        "https://oralpath.sriher.com/resources/template/images/slider_new/9.JPG"
-      ]);
     const settings = {
         dots: false,
         infinite: true,
@@ -75,9 +62,7 @@ const HeroCarousals = () => {
       useEffect(() => {
         reduxState?.slider && setSliderImages(reduxState.slider.data);
       }, [reduxState]);
-  
-      let idCount = 1;
-  
+    
       const dispatch = useDispatch();
   
       useEffect(() => {

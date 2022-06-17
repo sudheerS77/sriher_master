@@ -95,7 +95,10 @@ Router.delete("/delete/:_id", async (req, res) => {
             throw Error("Data Not exist");
         }
         const data = await EventModel.findByIdAndDelete(_id);
-        return res.status(200).json({message: "Event Deleted successfully", data: data});
+        //const da = await EventRegisterModel.findOneAndRemove({event_id: _id});
+        const da = await EventRegisterModel.deleteMany({event_id: _id});
+
+        return res.status(200).json({message: "Event Deleted successfully"});
     } catch (error) {
         res.status(500).json({error: error.message});
     }
@@ -138,7 +141,6 @@ METHOD      :   GET
 Router.get("/getuserevents/:_id", async (req, res) => {
     try {
         const id = req.params._id;
-        console.log(id);
         const checking_user_events = await EventRegisterModel.find();
         const userEvents = []
         checking_user_events.map((data) => {
@@ -146,7 +148,6 @@ Router.get("/getuserevents/:_id", async (req, res) => {
                 userEvents.push(data)
             }
         });
-        console.log(userEvents);
         res.status(200).json({ userEvents });
     } catch (error) {
         res.status(500).json({error: error.message});
@@ -164,18 +165,10 @@ METHOD      :   POSt
 */
 Router.post("/event-register-user", async (req, res) => {
     try {
-        const data = await req.body.eventRegData;
-        //console.log(data);
-        //find( { qty: { $gt: 4 } } )
-        //const check_event_id = await EventRegisterModel.find({ event_id: { $gt: data.event_id } });
-        //const check_user = await EventRegisterModel.find({ event_id: { $gt: data.event_id }, user_id: { $gt: data.user_id }});        
-        // const check_user = await EventRegisterModel.find({ $or : [
-        //     {"event_id": data.event_id},
-        //     {"user_id": data.user_id}
-        // ]});
-             //event_id: { $gt: data.event_id }, user_id: { $gt: data.user_id }});                
+        const data = await req.body.eventRegData;                    
         const event_data = await EventRegisterModel.find();
         event_data.map((e_data) => {
+            console.log();
             if (e_data.user_id === data.user_id && e_data.event_id === data.event_id) {
                 throw Error("User already Registered for the event");
             }

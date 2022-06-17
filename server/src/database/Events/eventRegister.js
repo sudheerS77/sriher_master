@@ -13,7 +13,7 @@ const EventsRegisterSchema = new mongoose.Schema(
         user_phonenumber: [{ type: Number}],
         user_institution: { type: String},
         user_State: { type: String},
-        venu: { type: String },
+        venue: { type: String },
         event_start_data: { type: String },
         event_end_data: { type: String },
         event_link: { type: String }
