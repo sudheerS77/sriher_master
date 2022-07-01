@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react'
 import DonutChart from 'react-donut-chart';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import { MdFileDownload } from "react-icons/md";
-
+import { CSVLink  } from "react-csv";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -20,18 +19,23 @@ const DognutChart = () => {
   const { type } = useParams();
   const [ values, setValues ] = useState([])
   const [ feedbackUsers, setFeedbackUsers] = useState([]);
+  
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(getFacultyFeedback(type))
   }, [])
+  
   const reduxState = useSelector((globalState) => globalState.Feedback)
-  console.log(reduxState.feedback.data);
+
   useEffect(() => {
     reduxState?.feedback && setValues(reduxState.feedback.rating);
     reduxState?.feedback && setFeedbackUsers(reduxState.feedback?.data);
   }, [reduxState])
-  console.log(values);
+
   var idCount = 0;
+
+  const csvData = feedbackUsers;
   return ( 
     <>
         <DonutChart
@@ -61,16 +65,20 @@ const DognutChart = () => {
             ]}
           />
           <div className="flex flex-col items-end justify-center shadow-lg">
-            <div className="flex items-center gap-2 border border-gray-50 bg-green-700 text-gray-50 text-xl font-semibold p-2 rounded-md shadow-md mb-2">
-              <ReactHTMLTableToExcel
-                id="test-table-xls-button"
-                className=""
-                table="table-to-xls"
-                filename="feedback"
-                sheet="sheet"
-                buttonText="Download"/>    
-                <MdFileDownload className="w-6 h-6"/>            
+            {feedbackUsers?.length > 0 ? (
+              <div className="flex items-center gap-2 border border-gray-50 bg-green-700 text-gray-50 text-xl font-semibold p-2 rounded-md shadow-md mb-2">
+              <CSVLink data={csvData} filename={"feedback.csv"}>Download</CSVLink>
+              <MdFileDownload className="w-6 h-6"/>            
             </div>
+            ) : (
+             <span>
+              <div className="flex items-center gap-2 border border-gray-50 bg-red-700 text-gray-50 text-xl font-semibold p-2 rounded-md shadow-md mb-2">
+              No Data To Download            
+              <MdFileDownload className="w-6 h-6"/>            
+            </div>
+             </span> 
+            )
+            }
             <TableContainer component={Paper} className="table">
               <Table sx={{ minWidth: 650 }} aria-label="simple table" id="table-to-xls">
                 <TableHead>            
@@ -101,10 +109,7 @@ const DognutChart = () => {
                 </TableBody>
               </Table>
             </TableContainer>                  
-          </div>
-         
-        
-        
+          </div>                     
     </>
   )
 }

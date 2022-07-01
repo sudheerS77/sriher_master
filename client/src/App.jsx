@@ -24,7 +24,6 @@ import GalleryUpdate from './Pages/Admin/galleryUpdate.page';
 import { getMySelf } from './Redux/Reducer/User/user.action';
 import SliderUpdate from './Pages/Admin/sliderUpdate.page';
 import EventParticipants from './Pages/Admin/eventsParticipants.page';
-import BrochureUpdate from './Pages/Admin/Brochure/brochureUpdate.page';
 import UpdateFeedbackFaculty from './components/AdminComponents/Feedback/updateFeedbackFaculty';
 import FFUpdate from './Pages/Admin/AFeedback/feedbackFacultyUpdate.page';
 import DognutChart from './components/AdminComponents/Feedback/dognutChart';
@@ -70,7 +69,6 @@ const App = () => {
           <Route path="/admin/projects/:type" element={<ProjectUpdate urltype={"id"}/>} />        
           <Route path="/admin/gallery/:type" element={<GalleryUpdate urltype={"id"}/>} /> 
           <Route path="/admin/slider/:type" element={<SliderUpdate urltype={"id"}/>} /> 
-          <Route path="/admin/brochure/:type" element={<BrochureUpdate urltype={"id"}/>} /> 
           <Route path="/admin/feedback/:type" element={<FFUpdate urltype={"id"}/>} /> 
           <Route path="/admin/faculty-feedback/:type" element={<FFUpdate urltype={"faculty-feedback"}/>} /> 
         </Routes>

@@ -13,6 +13,7 @@ import { signOut } from "../../Redux/Reducer/Auth/auth.action";
 
 const SmNavBar = () => {
   const { type } = useParams();
+  const [ isDropDownOpen, setIsDropDownOpen ] =  useState(false);
   const [value, setValue] = useState("");
 
   // const handleChange = (event) => {
@@ -29,9 +30,11 @@ const SmNavBar = () => {
 //   reduxState?.user && setUser(reduxState?.user);
 //  }, [reduxState]);
 
- const signOutHandler = () => dispatch(signOut());
+ const signOutHandler = () => {
+  window.location.reload(false);
+  dispatch(signOut())
+ };
 
-  const [ isDropDownOpen, setIsDropDownOpen ] =  useState(false);
   return (
     <div className="">
       <div className="fixed md:hidden z-10 w-full h-14 bg-gray-50 shadow-xl border-b flex flex-row items-center justify-between gap-2 pr-4">

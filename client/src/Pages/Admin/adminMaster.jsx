@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 //Pages
@@ -12,10 +12,16 @@ import GalleryPage from "./gallery.page";
 import UserPage from "./user.page";
 import SliderPage from "./slider.page";
 import FeedbackPage from "./AFeedback/feedback.page";
-import BrochurePage from "./Brochure/brochure.page";
 
 const AdminMaster = () => {
   let { type } = useParams();
+  useEffect(() => {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, [type]);
   console.log(type);
   return (
     <div>
@@ -37,8 +43,6 @@ const AdminMaster = () => {
       {type === "addimage" && <GalleryPage urltype={type} />}
       {type === "slider" && <SliderPage urltype={type} />}
       {type === "addslider" && <SliderPage urltype={type} />}
-      {type === "brochure" && <BrochurePage urltype={type} />}
-      {type === "addbrochure" && <BrochurePage urltype={type} />}
       {type === "feedback" && <FeedbackPage urltype={type} />}
       {type === "add-faculty-feedback" && <FeedbackPage urltype={type} />}
     </div>

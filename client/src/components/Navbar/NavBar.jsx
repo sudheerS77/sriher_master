@@ -3,8 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import gravatar from "gravatar";
 
+//Components
 import SmNavBar from "./smNavBar";
 import logo from "../assets/logo.png";
+import { EventsDropdownRender, StaffDropdownRender } from "./navDropDown";
 
 //Redux action
 import { signOut } from "../../Redux/Reducer/Auth/auth.action";
@@ -26,9 +28,53 @@ const LgNav = () => {
   //  }, [reduxState]);
 
   const signOutHandler = () => {
-    dispatch(signOut());
     window.location.reload(false);
+    dispatch(signOut());
   };
+
+  const staff = [
+    {
+        name: "Faculty",
+        path: "faculty"
+    },
+    {
+        name: "Visiting Faculty",
+        path: "visitingfaculty"
+    },
+    {
+        name: "pg",
+        path: "pg"
+    }
+]
+const events = [
+  {
+      name: "Conferences",
+      path: "events"
+  },
+  {
+      name: "CMS",
+      path: "events"
+  },  
+]
+
+const navbarList = [
+  {
+    name: "Home",
+    path: "home"
+  },
+  {
+    name: "Achivements",
+    path: "achivements"
+  },
+  {
+    name: "Gallery",
+    path: "gallery"
+  },
+  {
+    name: "Projects",
+    path: "projects"
+  },
+]
 
   return (
     <div className="hidden fixed z-10 w-full bg-gray-50 md:flex flex-col items-start gap-2">
@@ -89,102 +135,26 @@ const LgNav = () => {
         </div>
       </div>
       <div className="bg-teal-700 w-screen h-10 flex items-center opacity-90 flex flex-row items-center justify-between">
-        <ul className="flex flex-row lg:ml-20 items-center justify-between md:gap-6 lg:gap-12 md:text-sm lg:text-lg text-gray-50 mx-8 cursor-pointer">
-          <li
-            className={
-              type === "home"
-                ? "bg-teal-800 border border-teal-500 border-grey-50 shadow-2xl py-1 px-2 rounded-sm text-blue-50 transition duration-700 ease-in-out delay-150"
-                : ""
-            }
-          >
-            <Link to={"/home"}>Home</Link>
-          </li>
-          <li
-            className={
-              type === "brochure"
-                ? "bg-teal-800 border border-teal-500 border-grey-50 shadow-2xl py-1 px-2 rounded-sm text-blue-50 transition duration-700 ease-in-out delay-150"
-                : ""
-            }
-          >
-            <Link to={"/brochure"}>Brochure</Link>
-          </li>
-          <li
-            className={
-              type === "events"
-                ? "bg-teal-800 border border-teal-500 border-grey-50 shadow-2xl py-1 px-2 rounded-sm text-blue-50 transition duration-700 ease-in-out delay-150"
-                : ""
-            }
-          >
-            <Link to={"/events"}>Events</Link>
-          </li>
-          <li
-            className={
-              type === "achivements"
-                ? "bg-teal-800 border border-teal-500 border-grey-50 shadow-2xl py-1 px-2 rounded-sm text-blue-50 transition duration-700 ease-in-out delay-150"
-                : ""
-            }
-          >
-            <Link to={"/achivements"}>Achivements</Link>
-          </li>
-          <li
-            className={
-              type === "faculty" || type === "visitingfaculty" || type === "pg"
-                ? "bg-teal-800 border border-teal-500 border-grey-50 shadow-2xl py-1 px-2 rounded-sm text-blue-50 transition duration-700 ease-in-out delay-150 w-44"
-                : "w-44"
-            }
-          >
-            <select
-              value={value}
-              onClick={() => value !== "" && navigate(`/${value}`)}
-              style={{ fontSize: "100%" }}
-              onChange={handleChange}
-              className="bg-teal-700 h-full w-full border-none rounded-lg"
+      <ul className="flex flex-row lg:ml-20 items-center justify-between md:gap-6 lg:gap-12 md:text-sm lg:text-lg text-gray-50 mx-8 cursor-pointer">
+      {navbarList.map((data) => (
+        <li
+              className={
+                type === data.path
+                  ? "bg-teal-800 border border-teal-500 border-grey-50 shadow-2xl py-1 px-2 rounded-sm text-blue-50 transition duration-700 ease-in-out delay-150"
+                  : ""
+              }
             >
-              <option value="" disabled hidden>
-                Teaching Staff
-              </option>
-              <option
-                value="faculty"
-                className="text-center text-lg bg-gray-50 font-bold text-indigo-900 w-full"
-              >
-                <Link to="/faculty">Faculty</Link>
-              </option>
-              <option disabled="disabled" className="bg-gray-50"></option>
-              <option
-                value="visitingfaculty"
-                className="text-center text-lg bg-gray-50 font-bold text-indigo-900 w-full"
-              >
-                Visiting Faculty
-              </option>
-              <option disabled="disabled" className="bg-gray-50"></option>
-              <option
-                value="pg"
-                className="text-center text-lg bg-gray-50 font-bold text-indigo-900 w-full py-1"
-              >
-                Pg
-              </option>
-              <option disabled="disabled" className="bg-gray-50"></option>
-            </select>
-          </li>
-          <li
-            className={
-              type === "gallery"
-                ? "bg-teal-800 border border-teal-500 border-grey-50 shadow-2xl py-1 px-2 rounded-sm text-blue-50 transition duration-700 ease-in-out delay-150"
-                : ""
-            }
-          >
-            <Link to={"/gallery"}>Gallery</Link>
-          </li>
-          <li
-            className={
-              type === "projects"
-                ? "bg-teal-800 border border-teal-500 border-grey-50 shadow-2xl py-1 px-2 rounded-sm text-blue-50 transition duration-700 ease-in-out delay-150"
-                : ""
-            }
-          >
-            <Link to={"/projects"}>Projects</Link>
-          </li>
-        </ul>
+              <Link to={`/${data.path}`}>{data.name}</Link>
+            </li>
+      ))
+    }
+    <li>
+      <StaffDropdownRender data={staff} name="Teaching Staff"/>
+    </li>
+    <li>
+      <EventsDropdownRender data={events} name="Events"/>
+    </li>
+    </ul>
         {reduxState?.user && (
           <div className="flex items-center text-gray-50 text-lg  gap-6 mr-14">
             <span
@@ -206,18 +176,7 @@ const LgNav = () => {
               <Link to={"/feedback"}>Feedback</Link>
             </span>
           </div>
-        )}
-        {/* <div className="w-20 relative">
-              <div                  
-                  className="border  border-gray-300 text-red-400 w-14 h-14 rounded-full"
-                >
-                  <img
-                    src={gravatar.url(reduxState?.user?.email)}
-                    alt={reduxState?.user?.email}
-                    className="w-full h-full rounded-full object-cover"
-                  />
-              </div>                            
-            </div>           */}
+        )}        
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ import { updateUserData } from "../Redux/Reducer/User/user.action";
 
 const UpdateUserProfile = () => {
   const [user, setUser] = useState([{}]);
+  
 
   const dispatch = useDispatch();
   const reduxState = useSelector((globalStore) => globalStore.user.user);
@@ -19,8 +20,8 @@ const UpdateUserProfile = () => {
     reduxState?.user && setUser(reduxState.user);
   }, [reduxState]);
 
-  console.log(user);
   const submit = () => {
+    
     dispatch(updateUserData(user));
   };
 
@@ -86,7 +87,7 @@ const UpdateUserProfile = () => {
             onChange={(e) =>
               setUser((prev) => ({ ...prev, phoneNumber: e.target.value }))
             }
-          />
+          />          
           <TextField
             id="typeOfRegistration"
             select
@@ -143,7 +144,9 @@ const UpdateUserProfile = () => {
             className="h-14"
             onClick={submit}
           >
-            Update Profile
+            <Link to="/profile">
+              Update Profile
+            </Link>
           </Button>
         </div>
       </div>

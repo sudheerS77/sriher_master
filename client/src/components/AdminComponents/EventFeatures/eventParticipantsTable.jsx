@@ -8,13 +8,12 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import { CSVLink  } from "react-csv";
 import { MdFileDownload } from "react-icons/md";
-
 
 //Redux actions
 import { getAllRegistredEvents } from "../../../Redux/Reducer/Events/event.action"
-
+import LoadingCell from '../loadingCell';
 
 const EventParticipantsTable = () => {
     const { type } = useParams();
@@ -22,35 +21,36 @@ const EventParticipantsTable = () => {
 
   const dispatch = useDispatch();
 
-  const reduxState = useSelector((globalStore) => globalStore.event);
-  console.log(reduxState);
-  console.log(reduxState.userEvents.data);
-  useEffect(() => {
-    dispatch(getAllRegistredEvents(type));
-  }, []);
+  // const reduxState = useSelector((globalStore) => globalStore.event);
+  // useEffect(() => {
+  //   dispatch(getAllRegistredEvents(type));
+  // }, []);
 
-  useEffect(() => {
-    reduxState?.userEvents && setEvents(reduxState?.userEvents?.data);
-  }, [reduxState]);
+  // useEffect(() => {
+  //   reduxState?.userEvents && setEvents(reduxState?.userEvents?.data);
+  // }, [reduxState]);
 
   let idCount = 1;
-  console.log(events);
-
   
+const csvData = events;
 
   return (
     <>    
       <div className="flex flex-col items-end justify-center shadow-lg">
-        <div className="flex items-center gap-2 border border-gray-50 bg-green-700 text-gray-50 text-xl font-semibold p-2 rounded-md shadow-md mb-2">
-          <ReactHTMLTableToExcel
-            id="test-table-xls-button"
-            className=""
-            table="table-to-xls"
-            filename="feedback"
-            sheet="sheet"
-            buttonText="Download"/>    
-            <MdFileDownload className="w-6 h-6"/>            
-          </div>
+      {events?.length > 0 ? (
+              <div className="flex items-center gap-2 border border-gray-50 bg-green-700 text-gray-50 text-xl font-semibold p-2 rounded-md shadow-md mb-2">
+              <CSVLink data={csvData} filename={"events.csv"}>Download</CSVLink>
+              <MdFileDownload className="w-6 h-6"/>            
+            </div>
+            ) : (
+             <span>
+              <div className="flex items-center gap-2 border border-gray-50 bg-red-700 text-gray-50 text-xl font-semibold p-2 rounded-md shadow-md mb-2">
+              No Data To Download            
+              <MdFileDownload className="w-6 h-6"/>            
+            </div>
+             </span> 
+            )
+            }        
         <TableContainer component={Paper} className="table">
           <Table sx={{ minWidth: 650 }} aria-label="simple table" id="table-to-xls">
             <TableHead>
@@ -86,9 +86,17 @@ const EventParticipantsTable = () => {
                   </TableRow>
               )) ): (
                 <>
-                    <h4 className="w-full py-4 text-lg font-bold text-blue-800 text-center">
-                      NO USERS
-                    </h4>
+                    <TableRow>
+                      <LoadingCell />
+                      <LoadingCell />
+                      <LoadingCell />
+                      <LoadingCell />
+                      <LoadingCell />
+                      <LoadingCell />
+                      <LoadingCell />
+                      <LoadingCell />
+                      <LoadingCell />
+                    </TableRow>
                 </>
               )
               }

@@ -11,6 +11,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 //import AddAchievement from './addAchievement';
+import LoadingCell from '../loadingCell';
 
 //Redux actions
 import { getEvents, deleteEvent } from "../../../Redux/Reducer/Events/event.action"
@@ -90,7 +91,17 @@ const EventTable = () => {
               </TableCell>  
                       
               </TableRow>
-          ))): <></>}
+          ))) : (
+            <TableRow>
+              <LoadingCell />
+              <LoadingCell />
+              <LoadingCell />
+              <LoadingCell />
+              <LoadingCell />
+              <LoadingCell />
+            </TableRow>
+          ) 
+          }
         </TableBody>
       </Table>
     </TableContainer>  

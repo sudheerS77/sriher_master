@@ -10,15 +10,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import AddAchievement from './addAchievement';
-
 //Redux actions
 import { deleteAchievement, getAchievement } from "../../../Redux/Reducer/Achivements/achievements.action"
+import LoadingCell from '../loadingCell';
 
 
 const AchievementTable = () => {
   const [achievements, setAchievements] = useState([]);
-
   const dispatch = useDispatch();
 
   const reduxState = useSelector((globalStore) => globalStore.achievement);
@@ -37,6 +35,8 @@ const AchievementTable = () => {
     dispatch(deleteAchievement(_id));
     window.location.reload();
   }
+
+  
 
   return (
     <>
@@ -81,7 +81,16 @@ const AchievementTable = () => {
                 </Link>
               </TableCell>  
             </TableRow>
-          ))): <></>}
+          ))): (
+            <TableRow>
+              <LoadingCell />
+              <LoadingCell />
+              <LoadingCell />
+              <LoadingCell />
+              <LoadingCell />
+              <LoadingCell />
+             </TableRow>
+          )}
         </TableBody>
       </Table>
     </TableContainer>  

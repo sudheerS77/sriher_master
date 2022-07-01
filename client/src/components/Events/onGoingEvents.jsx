@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import MoonLoader from "react-spinners/MoonLoader"
 //import Razorpay from "razorpay";
 
 //Redux action
@@ -17,7 +18,6 @@ const OnGoingEvents = () => {
   useEffect(() => {
     reduxState?.events && setEventsData(reduxState.events?.events);
   }, [reduxState?.events]);
-  console.log(userState);
 
   const dispatch = useDispatch();
   // const payNow = async (e) => {
@@ -117,7 +117,7 @@ const OnGoingEvents = () => {
 
   return (
     <>
-      <h1 className="text-xl md:text-3xl font-bold md:border-2 mt-3 text-center p-2 w-full md:shadow-md">
+      <h1 className="text-xl md:text-3xl font-bold mt-3 text-center p-2 w-full ">
         OnGoing Events
       </h1>
       <div className="flex flex-col items-center justify-center gap-10">
@@ -223,7 +223,9 @@ const OnGoingEvents = () => {
               )
           )
         ) : (
-          <div>Loading ....</div>
+          <div>
+            <MoonLoader width={1000} height={1000} />
+          </div>
         )}
       </div>
     </>

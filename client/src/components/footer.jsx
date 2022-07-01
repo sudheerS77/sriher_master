@@ -19,10 +19,10 @@ const Footer = () => {
             </div>
             <div className="md:w-1/2 flex items-center gap-10 mx-10">            
               <a href="https://play.google.com/store/apps/details?id=com.sriher.oralpathology" target={"_blank"}>
-                <img src={playStore} alt="" />
+                <img src={playStore} alt="" className='w-44 h-44'/>
               </a>
               <a href="https://play.google.com/store/apps/details?id=com.sriher.oralpathology" target={"_blank"}>
-                <img src={appStore} alt="" />
+                <img src={appStore} alt="" className='w-44 h-44'/>
               </a>
             </div>
         </div>
