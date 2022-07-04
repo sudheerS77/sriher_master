@@ -45,7 +45,7 @@ UserSchema.statics.findUserByEmailAndPassword = async ({ email, password }) => {
     console.log(cmpPassword);
 
     if(!cmpPassword) {        
-        throw new Error("Password didnt match");
+        throw new Error("Username or Password is incorrect");
     }
     return user;
 }

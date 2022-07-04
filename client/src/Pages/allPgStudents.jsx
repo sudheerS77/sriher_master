@@ -21,8 +21,8 @@ const AllPGStudents = () => {
   return (
     <>
       <NavBar />
-      <div className="relative top-20 md:py-10">
-        <div className="lg:mx-60">
+      <div className="relative top-16 md:top-0 lg:top-20 md:py-10">
+        <div className="px-5 md:px-10 lg:mx-44 mb-10">
           <PG />
         </div>
       </div>

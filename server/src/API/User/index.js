@@ -15,14 +15,15 @@ BODY      none
 Access    Public
 Method    GET  
 */
-Router.get("/", passport.authenticate("jwt"),async (req, res) => {
-    try {
-      const user = req.session.passport.user;
-      user.password = ""
-      return res.json({ user });
-    } catch (error) {
-      return res.status(500).json({ error: error.message });
-    }
+Router.get("/", passport.authenticate("jwt"), async (req, res) => {
+  try {
+    const user = req.session.passport.user;
+    // const { password, user } = data;
+    // console.log(user);
+    return res.json({ user });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
 });
 
 /*
@@ -34,14 +35,14 @@ METHOD      :   POST
 */
 
 Router.post("/add-user", async (req, res) => {
-  try {        
-      const data = await req.body.userData;
-      const user = await UserModel.create(data)
-      res.json({ user })
+  try {
+    const data = await req.body.userData;
+    const user = await UserModel.create(data);
+    res.json({ user });
   } catch (error) {
-      return res.status(500).json({error: error.message});
+    return res.status(500).json({ error: error.message });
   }
-})
+});
 
 /*
 Route     /update
@@ -52,19 +53,21 @@ Access    Public
 Method    PUT  
 */
 Router.put("/update", async (req, res) => {
-    try {
-      console.log("USERRRRRRRRRR");
-      const data = req.body.userData;
-      
-      const user = await UserModel.findOneAndUpdate(
-          { _id: data._id },
-          { $set: data }
-      );
-  
-      return res.status(200).json({ message: "user profile updated successfully", data: user });
-    } catch (error) {
-      return res.status(500).json({ error: error.message });
-    }
+  try {
+    const data = req.body.userData;
+    console.log("updateddddddddddddddddddddddddddddddd");
+    console.log(data);
+    const user = await UserModel.findOneAndUpdate(
+      { _id: data._id },
+      { $set: data }
+    );
+    console.log(user);
+    return res
+      .status(200)
+      .json({ message: "user profile updated successfully", data: user });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
 });
 /*
 Route     /

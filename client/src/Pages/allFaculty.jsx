@@ -19,7 +19,7 @@ const AllFaculty = () => {
   return (
     <>
       <NavBar />
-      <div className="relative top-20 md:py-10">
+      <div className="relative top-16 md:top-0 lg:top-20 md:py-10">
         <div>
           <FacultyCard />
         </div>

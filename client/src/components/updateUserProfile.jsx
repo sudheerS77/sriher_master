@@ -10,8 +10,8 @@ import Button from "@mui/material/Button";
 import { updateUserData } from "../Redux/Reducer/User/user.action";
 
 const UpdateUserProfile = () => {
-  const [user, setUser] = useState([{}]);
-  
+  const [user, setUser] = useState([]);
+  const [userData, setUserData] = useState([]);
 
   const dispatch = useDispatch();
   const reduxState = useSelector((globalStore) => globalStore.user.user);
@@ -20,8 +20,15 @@ const UpdateUserProfile = () => {
     reduxState?.user && setUser(reduxState.user);
   }, [reduxState]);
 
+  console.log("AAAAAAAAAA");
+  console.log(user);
+  // console.log(userData);
+  // const { password, uData } = userData;
+  // setUser(uData);
+  // console.log("BBBBBBBBBBBBB");
+  // console.log(user);
+
   const submit = () => {
-    
     dispatch(updateUserData(user));
   };
 
@@ -40,7 +47,7 @@ const UpdateUserProfile = () => {
           <TextField
             //required
             helperText="Your name"
-            value={user.fullName}
+            value={user?.fullName}
             fullWidth
             onChange={(e) =>
               setUser((prev) => ({ ...prev, fullName: e.target.value }))
@@ -82,12 +89,12 @@ const UpdateUserProfile = () => {
             required
             //id="phoneNumber"
             helperText="Mobile Number"
-            value={user.phoneNumber}
+            value={user?.phoneNumber}
             fullWidth
             onChange={(e) =>
               setUser((prev) => ({ ...prev, phoneNumber: e.target.value }))
             }
-          />          
+          />
           <TextField
             id="typeOfRegistration"
             select
@@ -131,7 +138,7 @@ const UpdateUserProfile = () => {
             onChange={(e) =>
               setUser((prev) => ({ ...prev, address: e.target.value }))
             }
-            value={user.address}
+            value={user?.address}
             multiline
             rows={1}
             fullWidth
@@ -144,9 +151,7 @@ const UpdateUserProfile = () => {
             className="h-14"
             onClick={submit}
           >
-            <Link to="/profile">
-              Update Profile
-            </Link>
+            <Link to="/profile">Update Profile</Link>
           </Button>
         </div>
       </div>

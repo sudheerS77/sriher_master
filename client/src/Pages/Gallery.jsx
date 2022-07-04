@@ -25,9 +25,11 @@ const GalleryPage = () => {
   return (
     <>
       <NavBar />
-      <div className="py-10">
-        <div className="lg:w-full mt-14 lg:-mb-1.5"></div>
-        <div className="md:mt-24">
+      <div className="relative top-10 lg:top-20 py-10">
+        <h1 className="border-2 py-0.5 md:py-1 bg-gray-200 text-center text-2xl font-bold font-semibold mx-6 md:mt-5 lg:mt-10 lg:mx-44">
+          Gallery
+        </h1>
+        <div className="mt-2">
           <GalleryComponent galleryImages={galleryImages} />
         </div>
         {/* <DztImageGalleryComponent images={data } imageBackgroundColor={"white"} className="bg-white"/> */}

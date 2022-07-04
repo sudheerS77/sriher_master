@@ -71,6 +71,8 @@ export const addUser = (userData) => async (dispatch) => {
 }
 export const updateUserData = (userData) => async (dispatch) => {
     try {
+        console.log("USERRRRRRRRRRRRRRRRRRRRRRRRRRR");
+        console.log(userData);
         const user = await await axios({
             method: "PUT",
             url: `${API_URL}/user/update`,

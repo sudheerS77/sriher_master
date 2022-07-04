@@ -52,14 +52,12 @@ Method    POST
 */
 Router.post("/change-password", async(req, res) => {
     try {
-        const data  = await req.body;
-        console.log(data);
+        const data = await req.body;
         const bcryptSalt = await bcrypt.genSalt(8);
         const hashedPassword = await bcrypt.hash(data.password, bcryptSalt);
         const updateData = {
-            password: hashedPassword
-        }
-        console.log(updateData);
+          password: hashedPassword,
+        };
          await UserModel.findOneAndUpdate(
             { _id: data._id },            
             { $set: {

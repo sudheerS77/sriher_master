@@ -1,0 +1,19 @@
+#edit{
+    display: none;
+}
+
+#edit_label:hover :nth-child(1) { 
+    display: block;
+}
+#delete{
+    display: none;
+}
+#delete_label:hover :nth-child(1) {
+    display: block;
+}
+#view{
+    display: none;
+}
+#view_label:hover :nth-child(1) {
+    display: block;
+}

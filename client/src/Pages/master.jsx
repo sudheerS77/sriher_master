@@ -31,6 +31,7 @@ const Master = () => {
       {type === "home" && <Home />}
       {type === "brochure" && <Brochure />}
       {type === "events" && <Event />}
+      {type === "cde" && <Event />}
       {type === "gallery" && <GalleryPage />}
       {type === "achivements" && <Achievements />}
       {type === "faculty" && <AllFaculty />}

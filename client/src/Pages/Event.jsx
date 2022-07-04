@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 
 //Components
 import NavBar from "../components/Navbar/NavBar";
@@ -8,8 +9,10 @@ import CompletedEvents from "../components/Events/completedEvents";
 
 //Redux actions
 import { getEvents } from "../Redux/Reducer/Events/event.action";
+import CDE from "../components/Events/cde";
 
 const Event = () => {
+  const { type } = useParams();
   const [eventData, setEventsData] = useState([]);
   const [onGoingEventsCount, setOnGoingEventsCount] = useState(0);
   const [completedEventsCount, setCompletedEventsCount] = useState(0);
@@ -42,28 +45,17 @@ const Event = () => {
   return (
     <>
       <NavBar />
-      <div className="border-2">
-        {/* <div className='lg:w-full h-32 lg:-mb-1.5'></div> */}
-        {/* <div className="md:ml-10 w-2/5">
-        <Tag eventName={"Events"} />
-      </div> */}
-        {/* <div className="flex flex-row bg-gray-200 md:bg-gray-50 items-center justify-around md:justify-start md:gap-10 mt-14 md:mt-20 lg:mt-40 md:ml-10">
-          <div className="w-40 md:w-72 h-24 md:h-36  rounded-xl flex items-center justify-center md:shadow-xl md:border">
-            <h4 className="text-sm md:text-xl text-gray-900 font-md md:font-bold">
-              ON-Going Events {onGoingEventsCount}
-            </h4>
+      <div className="relative top-10 lg:top-20 py-10">
+        {type === "cde" ? (
+          <div className="px-3 md:px-10 lg:px-0">
+            <CDE />
           </div>
-          <div className="w-40 md:w-72 h-24 md:h-36 rounded-xl flex items-center justify-center md:shadow-xl md:border">
-            <h4 className="text-sm md:text-xl text-gray-900 font-md md:font-bold">
-              Completed Events {completedEventsCount}
-            </h4>
+        ) : (
+          <div className="flex flex-col gap-10 w-full items-center justify-center pb-10 px-3 md:px-10 lg:px-0">
+            <OnGoingEvents />
+            <CompletedEvents />
           </div>
-        </div> */}
-
-        <div className="flex flex-col gap-10 w-full items-center justify-center md:mt-44 pb-10">
-          <OnGoingEvents />
-          <CompletedEvents />
-        </div>
+        )}
       </div>
     </>
   );

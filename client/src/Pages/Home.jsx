@@ -20,8 +20,8 @@ const Home = () => {
   return (
     <>
       <NavBar />
-      <div className="bg-indigo-50 relative top-20 pb-20">
-        <div className="border-red-900">
+      <div className="bg-blue-50 relative top-10 lg:top-20 py-0 pb-10">
+        <div className="">
           <HeroCarousals />
         </div>
         <AboutDep />

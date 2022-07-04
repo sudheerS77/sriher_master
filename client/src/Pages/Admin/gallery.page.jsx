@@ -45,7 +45,7 @@ const GalleryAPage = (props) => {
         <div className="w-1/5">
           <SideBar />
         </div>
-        <div className="w-full flex flex-col gap-5">
+        <div className="w-4/5 flex flex-col gap-5">
           <AdminNavBar />
           <div className="flex flex-col gap-10 mt-5">
             <div className="flex flex-row items-end justify-between mx-10">

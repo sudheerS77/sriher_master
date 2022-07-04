@@ -96,11 +96,11 @@ const UserProfile = () => {
             <div class="p-4 md:p-12 text-center w-full lg:text-left">
               <h1 class="text-3xl font-bold pt-8 lg:pt-0">{user?.fullName}</h1>
               <div class="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-green-500 opacity-25"></div>
-              <div class="pt-4 px-10 text-base w-auto font-bold flex items-center justify-center lg:justify-start">
+              <div class="pt-4 text-base w-auto font-bold flex items-center justify-center lg:justify-start">
                 <span className="h-4 fill-current text-green-700 pr-2">
                   <MdEmail />
                 </span>
-                <p className="">{user?.email}</p>
+                <h6 className="">{user?.email}</h6>
               </div>
               <div class="pt-3 text-sm font-semibold flex flex-row items-center justify-center lg:justify-start">
                 <span className="h-4 fill-current text-green-700 pr-2">
@@ -127,11 +127,11 @@ const UserProfile = () => {
                 {user?.state}
               </p>
               <div class="pt-12 flex items-center justify-center gap-6">
-                <button class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full">
+                <button class="bg-green-700 hover:bg-green-900 text-white text-sm md:text-md font-semibold py-1 px-2 md:py-2 md:px-4 rounded-full">
                   <Link to="/update-profile">update Profile</Link>
                 </button>
                 <button
-                  class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full"
+                  class="bg-green-700 hover:bg-green-900 text-white text-sm md:text-md font-semibold py-1 px-2 md:py-2 md:px-4 rounded-full"
                   onClick={() => {
                     setChangePass(true);
                   }}

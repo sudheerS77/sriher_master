@@ -18,8 +18,10 @@ const Projects = () => {
   return (
     <>
       <NavBar />
-      <div className="bg-indigo-50 py-10 top-20">
-        <div className="w-full mt-14 md:mt-24 -mb-1.5"></div>
+      <div className="py-10 relative top-10 lg:top-20">
+        <h1 className="border-2 py-0.5 md:py-1 bg-gray-200 text-center text-2xl font-bold font-semibold mx-6 md:mt-5 lg:mt-10 lg:mx-44">
+          Projects
+        </h1>
         <ProjectComponent />
       </div>
     </>

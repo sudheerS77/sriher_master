@@ -13,14 +13,11 @@ const FacultyCard = () => {
 
   return (
     <>
-      <div className="mb-20 md:py-10 mx-6">
-        <div className="flex flex-row items-center justify-between mx-8 md:mx-40 pb-8">
-          <h1 className="text-2xl md:font-3xl font-semibold md:font-bold pl-3">
+      <div className="mb-20 md:py-10 mx-5 lg:mx-20">
+        <div className="flex flex-row items-center justify-between pb-8">
+          <h1 className="text-center bg-gray-100 py-1 w-full text-2xl md:font-3xl font-semibold md:font-bold pl-3">
             Faculty
           </h1>
-          <a href="./allfaculty">
-            <p className="text-xs md:text-sm font-light"></p>
-          </a>
         </div>
         <div className="md:w-auto flex flex-wrap items-center justify-center gap-10">
           {faculty?.length > 0 ? (

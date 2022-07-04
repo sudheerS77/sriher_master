@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import MoonLoader from "react-spinners/MoonLoader"
+import MoonLoader from "react-spinners/MoonLoader";
 //import Razorpay from "razorpay";
 
 //Redux action
@@ -10,7 +10,7 @@ import {
   createPayment,
 } from "../../Redux/Reducer/Events/event.action";
 
-const OnGoingEvents = () => {
+const CDE = () => {
   const [eventData, setEventsData] = useState([]);
   const navigate = useNavigate();
   const reduxState = useSelector((globalStore) => globalStore.event);
@@ -117,15 +117,15 @@ const OnGoingEvents = () => {
 
   return (
     <>
-      <h1 className="text-xl md:text-3xl font-bold mt-3 text-center p-2 w-full bg-gray-100 lg:mx-44">
-        OnGoing Events
+      <h1 className="text-xl md:text-3xl font-bold mt-3 text-center p-2 bg-gray-100 lg:mx-44 mb-10">
+        CDE
       </h1>
       <div className="flex flex-col items-center justify-center gap-10">
         {eventData?.length > 0 ? (
           eventData?.map(
             (data) =>
               data.status === "active" &&
-              data.eventType === "conference" && (
+              data.eventType === "cde" && (
                 <div className="flex flex-col items-center justify-center gap-5 lg:gap-2 px-5 lg:px-10 bg-gray-100 lg:w-3/4 py-5 rounded-md shadow-2xl border">
                   <div className="w-full flex flex-col md:flex-row items-center justify-between gap-6">
                     <div className="w-full md:w-64 h-52 lg:w-2/3 lg:h-72">
@@ -200,7 +200,7 @@ const OnGoingEvents = () => {
   );
 };
 
-export default OnGoingEvents;
+export default CDE;
 // {
 //   "_id": "629f94cea52f728051002a1d",
 //   "eventName": "demoEvent",

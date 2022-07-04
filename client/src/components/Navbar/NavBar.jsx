@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import gravatar from "gravatar";
+import onClickOutside from "react-onclickoutside";
 
 //Components
 import SmNavBar from "./smNavBar";
@@ -34,50 +35,50 @@ const LgNav = () => {
 
   const staff = [
     {
-        name: "Faculty",
-        path: "faculty"
+      name: "Faculty",
+      path: "faculty",
     },
     {
-        name: "Visiting Faculty",
-        path: "visitingfaculty"
+      name: "Visiting Faculty",
+      path: "visitingfaculty",
     },
     {
-        name: "pg",
-        path: "pg"
-    }
-]
-const events = [
-  {
+      name: "pg",
+      path: "pg",
+    },
+  ];
+  const events = [
+    {
       name: "Conferences",
-      path: "events"
-  },
-  {
-      name: "CMS",
-      path: "events"
-  },  
-]
+      path: "events",
+    },
+    {
+      name: "CDE",
+      path: "cde",
+    },
+  ];
 
-const navbarList = [
-  {
-    name: "Home",
-    path: "home"
-  },
-  {
-    name: "Achivements",
-    path: "achivements"
-  },
-  {
-    name: "Gallery",
-    path: "gallery"
-  },
-  {
-    name: "Projects",
-    path: "projects"
-  },
-]
+  const navbarList = [
+    {
+      name: "Home",
+      path: "home",
+    },
+    {
+      name: "Achivements",
+      path: "achivements",
+    },
+    {
+      name: "Gallery",
+      path: "gallery",
+    },
+    {
+      name: "Projects",
+      path: "projects",
+    },
+  ];
 
   return (
-    <div className="hidden fixed z-10 w-full bg-gray-50 md:flex flex-col items-start gap-2">
+    <div className="hidden fixed z-10 w-full bg-gray-50 lg:flex flex-col items-start gap-2">
       <div className="flex flex-row items-center justify-between w-full">
         <div className="md:w-64 lg:w-96 border border-gray-100 ml-20 mt-2">
           <Link to="/">
@@ -135,28 +136,30 @@ const navbarList = [
         </div>
       </div>
       <div className="bg-teal-700 w-screen h-10 flex items-center opacity-90 flex flex-row items-center justify-between">
-      <ul className="flex flex-row lg:ml-20 items-center justify-between md:gap-6 lg:gap-12 md:text-sm lg:text-lg text-gray-50 mx-8 cursor-pointer">
-      {navbarList.map((data) => (
-        <li
+        <ul className="flex flex-row lg:ml-20 items-center justify-between md:gap-6 lg:gap-12 md:text-sm lg:text-lg text-gray-50 mx-8 cursor-pointer">
+          {navbarList.map((data) => (
+            <li
               className={
                 type === data.path
-                  ? "bg-teal-800 border border-teal-500 border-grey-50 shadow-2xl py-1 px-2 rounded-sm text-blue-50 transition duration-700 ease-in-out delay-150"
-                  : ""
+                  ? "font-semibold bg-teal-800 border border-teal-500 border-grey-50 shadow-2xl py-1 px-2 rounded-sm text-blue-50 transition duration-700 ease-in-out delay-150"
+                  : "font-semibold"
               }
             >
-              <Link to={`/${data.path}`}>{data.name}</Link>
+              <Link to={`/${data.path}`} id="nav_items">
+                {data.name}
+              </Link>
             </li>
-      ))
-    }
-    <li>
-      <StaffDropdownRender data={staff} name="Teaching Staff"/>
-    </li>
-    <li>
-      <EventsDropdownRender data={events} name="Events"/>
-    </li>
-    </ul>
+          ))}
+          <li>
+            <StaffDropdownRender data={staff} name="Teaching Staff" />
+          </li>
+          <li>
+            <EventsDropdownRender data={events} name="Events" />
+          </li>
+          <li></li>
+        </ul>
         {reduxState?.user && (
-          <div className="flex items-center text-gray-50 text-lg  gap-6 mr-14">
+          <div className="flex font-semibold items-center text-gray-50 text-lg  gap-6 mr-14">
             <span
               className={
                 type === "conference"
@@ -164,7 +167,9 @@ const navbarList = [
                   : ""
               }
             >
-              <Link to={"/conference"}>Conferences</Link>
+              <Link to={"/conference"} id="nav_items">
+                Conferences
+              </Link>
             </span>
             <span
               className={
@@ -173,10 +178,12 @@ const navbarList = [
                   : ""
               }
             >
-              <Link to={"/feedback"}>Feedback</Link>
+              <Link to={"/feedback"} id="nav_items">
+                Feedback
+              </Link>
             </span>
           </div>
-        )}        
+        )}
       </div>
     </div>
   );
