@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import gravatar from "gravatar";
-import onClickOutside from "react-onclickoutside";
 
 //Components
 import SmNavBar from "./smNavBar";

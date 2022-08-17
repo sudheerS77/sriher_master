@@ -156,7 +156,6 @@ const AddEvent = () => {
     // const handleChange = (prop) => (event) => {
     //     console.log(prop);
     //     console.log(event.target.value);
-    //     setEventData({ ...eventData, [prop]: event.target.value });
     //     console.log(eventData);
     // };
 

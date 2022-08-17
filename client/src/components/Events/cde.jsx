@@ -20,63 +20,61 @@ const CDE = () => {
   }, [reduxState?.events]);
 
   const dispatch = useDispatch();
-  // const payNow = async (e) => {
-  //   try {
-  //     const  payments = await dispatch(createPayment(200));
-  //     const options = {
-  //       "key": "rzp_test_f7AzNO9BLJVfUI", // Enter the Key ID generated from the Dashboard
-  //       "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-  //       "currency": "INR",
-  //       "name": "SRC",
-  //       "description": "Test Transaction",
-  //       "image": "https://example.com/your_logo",
-  //       "order_id": "order_9A33XWu170gUtm", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-  //       "handler": function (response){
-  //           alert(response.razorpay_payment_id);
-  //           alert(response.razorpay_order_id);
-  //           alert(response.razorpay_signature)
-  //       },
-  //       "prefill": {
-  //           "name": "Gaurav Kumar",
-  //           "email": "gaurav.kumar@example.com",
-  //           "contact": "9999999999"
-  //       },
-  //       "notes": {
-  //           "address": "Razorpay Corporate Office"
-  //       },
-  //       "theme": {
-  //           "color": "#3399cc"
-  //       }
-  //     };
-  //     const razorpay = new Razorpay(options);
-  //       razorpay.open();
-  //       e.preventDefault();
-
-  //   } catch (error) {
-  //     alert(error)
-  //   }
-
-  // }
+  const payNow = async (e) => {
+    // try {
+    //   const payments = await dispatch(createPayment(200));
+    //   const options = {
+    //     key: "rzp_test_f7AzNO9BLJVfUI", // Enter the Key ID generated from the Dashboard
+    //     amount: "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    //     currency: "INR",
+    //     name: "SRC",
+    //     description: "Test Transaction",
+    //     image: "https://example.com/your_logo",
+    //     order_id: "order_9A33XWu170gUtm", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    //     handler: function (response) {
+    //       alert(response.razorpay_payment_id);
+    //       alert(response.razorpay_order_id);
+    //       alert(response.razorpay_signature);
+    //     },
+    //     prefill: {
+    //       name: "Gaurav Kumar",
+    //       email: "gaurav.kumar@example.com",
+    //       contact: "9999999999",
+    //     },
+    //     notes: {
+    //       address: "Razorpay Corporate Office",
+    //     },
+    //     theme: {
+    //       color: "#3399cc",
+    //     },
+    //   };
+    //   const razorpay = new Razorpay(options);
+    //   razorpay.open();
+    //   e.preventDefault();
+    // } catch (error) {
+    //   alert(error);
+    // }
+  };
   const launchRazorpyay = () => {
-    let options = {
-      key: "rzp_test_f7AzNO9BLJVfUI",
-      amount: 500 * 100,
-      currency: "INR",
-      name: "Sri Ramachandra",
-      description: "Payment for the event registration",
-      image: "https://oralpath.sriher.com/resources/assets/images/fav.png",
-      handler: () => {
-        alert("payment Completed");
-      },
-      prefill: {
-        name: userState.user?.fullName,
-        email: userState.user?.email,
-      },
-      theme: { color: "#c4242d" },
-    };
-    let razorPay = new window.Razorpay(options);
-    const rp = razorPay.open();
-    return rp;
+    // let options = {
+    //   key: "rzp_test_f7AzNO9BLJVfUI",
+    //   amount: 500 * 100,
+    //   currency: "INR",
+    //   name: "Sri Ramachandra",
+    //   description: "Payment for the event registration",
+    //   image: "https://oralpath.sriher.com/resources/assets/images/fav.png",
+    //   handler: () => {
+    //     alert("payment Completed");
+    //   },
+    //   prefill: {
+    //     name: userState.user?.fullName,
+    //     email: userState.user?.email,
+    //   },
+    //   theme: { color: "#c4242d" },
+    // };
+    // let razorPay = new window.Razorpay(options);
+    // const rp = razorPay.open();
+    // return rp;
   };
   console.log(eventData);
   const eventRegister = ({ data }) => {
@@ -198,7 +196,7 @@ const CDE = () => {
       </div>
     </>
   );
-};
+};;
 
 export default CDE;
 // {

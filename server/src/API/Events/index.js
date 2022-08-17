@@ -71,8 +71,9 @@ Router.put("/update-event", async (req, res) => {
     try {
         const data = req.body.eventData;
         await EventModel.findOneAndUpdate(
-            { _id: data._id },
-            { $set: data }
+          { _id: data._id },
+          { $set: data },
+          { multi: true }
         );
         res.status(200).json({message: "event updated successfully"});
     } catch (error) {
