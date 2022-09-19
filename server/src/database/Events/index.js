@@ -17,6 +17,7 @@ const EventsSchema = new mongoose.Schema({
   image: { type: String },
   venues: { type: String },
   conferenceType: { type: String },
+  price: { type: Number },
   eventType: { type: String },
   conferenceURL: { type: String },
   organizerName: { type: String },

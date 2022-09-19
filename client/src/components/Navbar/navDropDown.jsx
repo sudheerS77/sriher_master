@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import "./style.css";
 
 let useClickOutside = (handler) => {
   let domNode = useRef();
@@ -44,14 +45,14 @@ export const StaffDropdownRender = (props) => {
 
   return (
     <>
-      <div ref={domNode} class="dropdown inline-block relative">
+      <div ref={domNode} className="dropdown inline-block relative">
         <button
-          class="w-full text-gray-50 font-semibold py-2 px-4 rounded inline-flex items-center"
+          className="w-full text-gray-50 font-semibold py-2 px-4 rounded inline-flex items-center"
           onClick={(event) => {
             setIsDropDownOpen((prev) => !prev);
           }}
         >
-          <span class="mr-1" id="nav_items">
+          <span className="mr-1" id="nav_items">
             {/* {props.name === "Teaching Staff" &&
             (type === "faculty" || type === "visitingfaculty" || type === "pg")
               ? type
@@ -59,7 +60,7 @@ export const StaffDropdownRender = (props) => {
             {props.name}
           </span>
           <svg
-            class="fill-current h-4 w-4"
+            className="fill-current h-4 w-4"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
           >
@@ -67,9 +68,9 @@ export const StaffDropdownRender = (props) => {
           </svg>
         </button>
         {isDropDownOpen && (
-          <ul class="dropdown-menu absolute w-44 text-gray-700 w-full">
+          <ul className="dropdown-menu absolute w-44 text-gray-700 w-full">
             {props.data.map((data) => (
-              <li class="">
+              <li className="">
                 <Link
                   to={`/${data.path}`}
                   className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
@@ -102,20 +103,20 @@ export const EventsDropdownRender = (props) => {
 
   return (
     <>
-      <div ref={domNode} class="dropdown inline-block relative">
+      <div ref={domNode} className="dropdown inline-block relative">
         <button
-          class="w-full text-gray-50 font-semibold py-2 px-4 rounded inline-flex items-center"
+          className="w-full text-gray-50 font-semibold py-2 px-4 rounded inline-flex items-center"
           onClick={(event) => {
             setIsDropDownOpen((prev) => !prev);
           }}
         >
-          <span class="mr-1" id="nav_items">
+          <span className="mr-1" id="nav_items">
             {props.name === "Events" && (type === "events" || type === "cms")
               ? type
               : props.name}
           </span>
           <svg
-            class="fill-current h-4 w-4"
+            className="fill-current h-4 w-4"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
           >
@@ -123,26 +124,28 @@ export const EventsDropdownRender = (props) => {
           </svg>
         </button>
         {isDropDownOpen && (
-          <ul class="dropdown-menu absolute w-44 text-gray-700 w-full">
-            {props.data.map((data) => (
-              <li class="">
-                <Link
-                  to={`/${data.path}`}
-                  className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
-                >
-                  <button
-                    value={`${data.name}`}
-                    onClick={(event) => {
-                      console.log(event.target.value);
-                      setValue(data.name);
-                    }}
+          <div className="drop-down-menu">
+            <ul className="dropdown-menu absolute w-44 text-gray-700 w-full transition ease-out duration-300">
+              {props.data.map((data) => (
+                <li className="">
+                  <Link
+                    to={`/${data.path}`}
+                    className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
                   >
-                    {data.name}
-                  </button>
-                </Link>
-              </li>
-            ))}
-          </ul>
+                    <button
+                      value={`${data.name}`}
+                      onClick={(event) => {
+                        console.log(event.target.value);
+                        setValue(data.name);
+                      }}
+                    >
+                      {data.name}
+                    </button>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
       </div>
     </>

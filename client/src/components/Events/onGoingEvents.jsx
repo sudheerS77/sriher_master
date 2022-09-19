@@ -78,6 +78,7 @@ const OnGoingEvents = () => {
     const rp = razorPay.open();
     return rp;
   };
+  
   console.log(eventData);
   const eventRegister = ({ data }) => {
     console.log(data);
@@ -104,10 +105,10 @@ const OnGoingEvents = () => {
       if (data.conferenceType === "free") {
         dispatch(eventRegisteration(eventRegData));
       } else {
-        if (launchRazorpyay()) {
-          eventRegData.paymentStatus = true;
-          dispatch(eventRegisteration(eventRegData));
-        }
+        // if (launchRazorpyay()) {
+        // }
+        // eventRegData.paymentStatus = true;
+        dispatch(eventRegisteration(eventRegData));
       }
     } else {
       alert("Please login to register for the event");

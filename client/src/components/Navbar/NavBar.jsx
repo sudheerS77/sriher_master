@@ -42,7 +42,7 @@ const LgNav = () => {
       path: "visitingfaculty",
     },
     {
-      name: "pg",
+      name: "PG",
       path: "pg",
     },
   ];
@@ -138,6 +138,7 @@ const LgNav = () => {
         <ul className="flex flex-row lg:ml-20 items-center justify-between md:gap-6 lg:gap-12 md:text-sm lg:text-lg text-gray-50 mx-8 cursor-pointer">
           {navbarList.map((data) => (
             <li
+              key={data?.name}
               className={
                 type === data.path
                   ? "font-semibold bg-teal-800 border border-teal-500 border-grey-50 shadow-2xl py-1 px-2 rounded-sm text-blue-50 transition duration-700 ease-in-out delay-150"

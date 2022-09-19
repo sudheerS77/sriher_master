@@ -76,7 +76,7 @@ const CDE = () => {
     // const rp = razorPay.open();
     // return rp;
   };
-  console.log(eventData);
+  
   const eventRegister = ({ data }) => {
     console.log(data);
     const eventRegData = {

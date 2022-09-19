@@ -140,22 +140,32 @@ METHOD      :   GET
     }
 });
 Router.get("/getuserevents/:_id", async (req, res) => {
-    try {
-        const id = req.params._id;
-        const checking_user_events = await EventRegisterModel.find();
-        const userEvents = []
-        checking_user_events.map((data) => {
-            if(data.user_id === id) {
-                userEvents.push(data)
-            }
-        });
-        res.status(200).json({ userEvents });
-    } catch (error) {
-        res.status(500).json({error: error.message});
-    }
+  try {
+    const id = req.params._id;
+    const checking_user_events = await EventRegisterModel.find({
+      user_id: id,
+    });
+    const userEvents = [];
+    await Promise.all(
+      checking_user_events.map(async (data) => {
+        if (data.user_id === id) {
+          const event_data = await EventModel.findById(data.event_id);
+          userEvents.push({
+            ...data,
+            eventName: event_data?.eventName,
+            venue: event_data?.venues,
+            event_start_data: event_data?.conferenceStartDate,
+            event_end_data: event_data?.conferenceEndDate,
+            event_link: event_data?.conferenceURL,
+          });
+        }
+      })
+    );
+    res.status(200).json({ userEvents });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
-
-
 
 /*
 ROUTE       :   /event-register-user
@@ -165,20 +175,22 @@ ACCESS      :   Public
 METHOD      :   POSt
 */
 Router.post("/event-register-user", async (req, res) => {
-    try {
-        const data = await req.body.eventRegData;                    
-        const event_data = await EventRegisterModel.find();
-        event_data.map((e_data) => {
-            console.log();
-            if (e_data.user_id === data.user_id && e_data.event_id === data.event_id) {
-                throw Error("User already Registered for the event");
-            }
-        })       
-        await EventRegisterModel.create(data);
-        res.status(200).json({message: "User Registered Successfully"});
-    } catch (error) {
-        res.status(500).json({error: error.message});
-    }
+  try {
+    const data = await req.body.eventRegData;
+    const event_data = await EventRegisterModel.find();
+    event_data.map((e_data) => {
+      if (
+        e_data.user_id === data.user_id &&
+        e_data.event_id === data.event_id
+      ) {
+        throw Error("User already Registered for the event");
+      }
+    });
+    await EventRegisterModel.create(data);
+    res.status(200).json({ message: "User Registered Successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 

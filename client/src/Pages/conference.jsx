@@ -1,11 +1,22 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 //Components
 import NavBar from "../components/Navbar/NavBar";
 import ConferenceList from "../components/Events/conferenceList";
 
+//Redux actions
+import { getUserEvent } from "../Redux/Reducer/Events/event.action";
+
 const Conference = () => {
+  const dispatch = useDispatch();
+  const reduxState = useSelector((globalStore) => globalStore.event);
+  const userState = useSelector((globalStore) => globalStore.user.user);
+  const user_id = userState?.user?._id;
+
+  useEffect(() => {
+    dispatch(getUserEvent(user_id));
+  }, []);
   return (
     <>
       <NavBar />

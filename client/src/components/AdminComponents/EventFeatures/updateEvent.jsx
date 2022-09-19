@@ -4,22 +4,22 @@ import { Link, useParams } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import DatePicker from 'react-date-picker';
-import TimePicker from 'react-time-picker';
+// import TimePicker from 'react-time-picker';
 import Multiselect from 'multiselect-react-dropdown';
-import { MdDelete } from "react-icons/md";
-import { AiFillFileAdd } from "react-icons/ai";
+// import { MdDelete } from "react-icons/md";
+// import { AiFillFileAdd } from "react-icons/ai";
 
 //Redux action
 import { getSpecificEvent, updateEventData } from "../../../Redux/Reducer/Events/event.action";
 
 const UpdateEvent = () => {
     const { type } = useParams();
-    const [rDate, setRDate] = useState(new Date());
-    const [csDate, setCSDate] = useState(new Date());
-    const [ceDate, setCEDate] = useState(new Date());
-    const [dDate, setDDate] = useState(new Date());
-    const [startTime, setStartTime] = useState('10:00');
-    const [endTime, setEndTime] = useState('10:00');
+    // const [rDate, setRDate] = useState(new Date());
+    // const [csDate, setCSDate] = useState(new Date());
+    // const [ceDate, setCEDate] = useState(new Date());
+    // const [dDate, setDDate] = useState(new Date());
+    // const [startTime, setStartTime] = useState('10:00');
+    // const [endTime, setEndTime] = useState('10:00');
     const [eventData, setEventData] = useState([]); 
 
     const [organiser, setOrganiser] = useState([
@@ -251,7 +251,7 @@ const UpdateEvent = () => {
               select
               defaultValue=""
               value={eventData ? eventData.status : ""}
-              helperText="Select Status"
+              helperText={`Selected Status = ${eventData?.status}`}
               //onChange={handleChange("status")}
               onChange={(e) =>
                 setEventData((prev) => ({ ...prev, status: e.target.value }))
@@ -270,7 +270,7 @@ const UpdateEvent = () => {
               select
               defaultValue=""
               value={eventData ? eventData.currentHome : " "}
-              helperText="Select Current Home"
+              helperText={`Selectd Current Home = ${eventData?.currentHome}`}
               //onChange={handleChange("currentHome")}
               onChange={(e) =>
                 setEventData((prev) => ({
@@ -288,7 +288,7 @@ const UpdateEvent = () => {
               select
               defaultValue=""
               value={eventData ? eventData.abstractForm : " "}
-              helperText="Select Abstract Form"
+              helperText={`Selectd Abstract Form = ${eventData?.abstractForm}`}
               //onChange={handleChange("abstractForm")}
               onChange={(e) =>
                 setEventData((prev) => ({
@@ -309,7 +309,7 @@ const UpdateEvent = () => {
                 onChange={(e) =>
                   setEventData((prev) => ({ ...prev, registerDate: e }))
                 }
-                value={eventData.registerDate}
+                value={eventData?.registerDate}
                 className=""
               />
             </div>
@@ -321,7 +321,7 @@ const UpdateEvent = () => {
                 onChange={(e) =>
                   setEventData((prev) => ({ ...prev, conferenceStartDate: e }))
                 }
-                value={eventData.conferenceStartDate}
+                value={eventData?.conferenceStartDate}
                 className=""
               />
             </div>
@@ -333,7 +333,7 @@ const UpdateEvent = () => {
                 onChange={(e) =>
                   setEventData((prev) => ({ ...prev, conferenceEndDate: e }))
                 }
-                value={eventData.conferenceEndDate}
+                value={eventData?.conferenceEndDate}
                 className=""
               />
             </div>
@@ -355,7 +355,7 @@ const UpdateEvent = () => {
               required
               name="venues"
               id="outlined-required"
-              helperText="Venues"
+              helperText="Venue"
               value={eventData?.venues}
               fullWidth
               //onChange={handleChange("venues")}
@@ -371,9 +371,9 @@ const UpdateEvent = () => {
                 id="status"
                 select
                 required
-                defaultValue={eventData?.status}
-                value={eventData?.conferenceType}
-                helperText="Select Conference Type"
+                defaultValue={eventData?.value}
+                value={eventData?.value}
+                helperText={`Conference = ${eventData?.conferenceType}`}
                 //onChange={handleChange("conferenceType")}
                 onChange={(e) =>
                   setEventData((prev) => ({
@@ -391,11 +391,9 @@ const UpdateEvent = () => {
                 name="Event Type"
                 id="status"
                 select
-                required
-                label="Event Type"
                 defaultValue=""
                 value={eventData?.eventType}
-                helperText="Select Conference Type"
+                helperText={`Event Type = ${eventData?.eventType}`}
                 //onChange={handleChange("conferenceType")}
                 onChange={(e) =>
                   setEventData((prev) => ({
